@@ -2,7 +2,6 @@
 require_once('valida_session.php');
 require_once('header.php'); 
 require_once('sidebar.php'); 
-require_once('cep_envia.php'); 
 ?>
 
 <!-- Main Content -->
@@ -78,7 +77,7 @@ require_once('cep_envia.php');
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label> Número </label>
                             <input type="number" class="form-control form-control-user" id="numero" name="numero" value="<?php if (!empty($_SESSION['numero'])) { echo $_SESSION['numero'];} ?>"  
-                            placeholder=" " required>
+                            placeholder="" required>
                         </div>
                         <div class="col-sm-6">
                             <label> Bairro </label>
@@ -128,7 +127,7 @@ require_once('cep_envia.php');
                     </div>                    
 
                     <div class="card-footer text-muted" id="btn-form">
-                        <div class=text-right>
+                        <div class="text-right">
                             <a title="Voltar" href="funcionario.php"><button type="button" class="btn btn-success"><i class="fas fa-arrow-circle-left"></i>&nbsp;</i>Voltar</button></a>
                             <a title="Adicionar"><button type="submit" name="updatebtn" class="btn btn-primary uptadebtn"><i class="fa fa-handshake">&nbsp;</i>Adicionar</button> </a>
                         </div>

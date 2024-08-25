@@ -1,8 +1,6 @@
 <?php
 session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
 $nome = $_POST["nome"];
 $email = $_POST["email"];
 $telefone = $_POST["telefone"];
@@ -14,13 +12,12 @@ $bairro = $_POST["bairro"];
 $cidade = $_POST["cidade"];
 $estado = $_POST["estado"];
 $status = $_POST["status"];
-$data_servico = $_POST["data_servico"];
-$perfil = 3;
+$perfil = 2; // Se o perfil para funcionários for diferente, ajuste aqui
 $data = date("y/m/d");
 
-require_once("bd/bd_agendamento.php");
+require_once("bd/bd_funcionario.php");
 
-$dados = buscaAgendamentoAdd($email);
+$dados = buscaFuncionario($email);
 
 if ($dados != 0) {
     $_SESSION['texto_erro'] = 'Este email já existe cadastrado no sistema!';
@@ -33,10 +30,9 @@ if ($dados != 0) {
     $_SESSION['bairro'] = $bairro;
     $_SESSION['cidade'] = $cidade;
     $_SESSION['estado'] = $estado;
-    $_SESSION['data_servico'] = $data_servico;
-    header("Location: cad_agendamento.php");
+    header("Location:cad_funcionario.php");
 } else {
-    $dados = cadastraAgendamento($nome, $email, $telefone, $senha, $cep, $endereco, $numero, $bairro, $cidade, $estado, $status, $perfil, $data);
+    $dados = cadastraFuncionario($nome, $email, $telefone, $senha, $cep, $endereco, $numero, $bairro, $cidade, $estado, $status, $perfil, $data);
 
     if ($dados == 1) {
         $_SESSION['texto_sucesso'] = 'Dados adicionados com sucesso.';
@@ -51,8 +47,7 @@ if ($dados != 0) {
         unset($_SESSION['bairro']);
         unset($_SESSION['cidade']);
         unset($_SESSION['estado']);
-        unset($_SESSION['data_servico']);
-        header("Location: agendamento.php");
+        header("Location:funcionario.php");
     } else {
         $_SESSION['texto_erro'] = 'Os dados não foram adicionados no sistema!';
         $_SESSION['nome'] = $nome;
@@ -64,8 +59,7 @@ if ($dados != 0) {
         $_SESSION['bairro'] = $bairro;
         $_SESSION['cidade'] = $cidade;
         $_SESSION['estado'] = $estado;
-        $_SESSION['data_servico'] = $data_servico;
-        header("Location: cad_agendamento.php");
+        header("Location:cad_funcionario.php");
     }
 }
 ?>
