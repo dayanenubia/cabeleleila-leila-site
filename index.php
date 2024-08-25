@@ -71,7 +71,7 @@ error_reporting(E_ALL);
                                                 <option value=""> </option>
                                                 <option value="1">Administrador</option>
                                                 <option value="2">Cliente</option>
-                                                <option value="3">Terceirizado</option>
+                                                <option value="3">Funcionário</option>
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">

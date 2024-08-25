@@ -4,11 +4,11 @@ require_once('header.php');
 require_once('sidebar.php'); 
 require_once ("bd/bd_servico.php");
 require_once ("bd/bd_cliente.php");
-require_once ("bd/bd_terceirizado.php");
+require_once ("bd/bd_funcionario.php");
 
 $clientes = listaClientes();
 $servicos = listaServicos();
-$terceirizados = listaTerceirizados();
+$funcionarios = listaFuncionarios();
 ?>
 
 <!-- Main Content -->
@@ -23,7 +23,7 @@ $terceirizados = listaTerceirizados();
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-md-8">
-                        <h6 class="m-0 font-weight-bold text-primary" id="title">ADICIONAR ORDEM DE SERVIÇO</h6>
+                        <h6 class="m-0 font-weight-bold text-primary" id="title">ADICIONAR AGENDAMENTO DE SERVIÇO</h6>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@ $terceirizados = listaTerceirizados();
             endif;
             ?>
 
-                <form class="user" action="cad_ordem_envia.php" method="post" >
+                <form class="user" action="cad_agendamento_envia.php" method="post" >
                     
                         <div class="form-group">
                             <label> Nome do Cliente </label>
@@ -67,7 +67,7 @@ $terceirizados = listaTerceirizados();
                         </div>
 
                         <div class="form-group">
-                            <label> Servico </label>
+                            <label> Serviço </label>
                             <select class="form-control" id="cod_servico" name="cod_servico">
                                 <?php foreach($servicos as $dados):?>
                                 <option value="<?=$dados['cod']?>"><?=$dados['nome']?></option> 
@@ -76,9 +76,9 @@ $terceirizados = listaTerceirizados();
                         </div>
 
                         <div class="form-group">
-                            <label> Terceirizado </label>
-                            <select class="form-control" id="cod_terceirizado" name="cod_terceirizado">
-                                <?php foreach($terceirizados as $dados):?>
+                            <label> Funcionário </label>
+                            <select class="form-control" id="cod_funcionario" name="cod_funcionario">
+                                <?php foreach($funcionarios as $dados):?>
                                 <option value="<?=$dados['cod']?>"><?=$dados['nome']?></option> 
                                 <?php endforeach ?>
                             </select>
@@ -93,7 +93,7 @@ $terceirizados = listaTerceirizados();
 
                     <div class="card-footer text-muted" id="btn-form">
                         <div class=text-right>
-                            <a title="Voltar" href="ordem.php"><button type="button" class="btn btn-success"><i class="fas fa-arrow-circle-left"></i>&nbsp;</i>Voltar</button></a>
+                            <a title="Voltar" href="agendamento.php"><button type="button" class="btn btn-success"><i class="fas fa-arrow-circle-left"></i>&nbsp;</i>Voltar</button></a>
                             <a title="Adicionar"><button type="submit" name="updatebtn" class="btn btn-primary uptadebtn"><i class="fas fa-fw fa-clipboard-list">&nbsp;</i>Adicionar</button> </a>
                         </div>
                     </div>
@@ -110,5 +110,3 @@ $terceirizados = listaTerceirizados();
 <?php
 require_once('footer.php');
 ?>
-
-

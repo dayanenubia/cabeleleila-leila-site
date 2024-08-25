@@ -133,9 +133,9 @@ function removeCliente($codigo){
     return $dados;
 
 }
-function clienteVinculadoOrdem($codigo_cliente) {
+function clienteVinculadoAgenda($codigo_cliente) {
   $conexao = conecta_db();
-  $query = "SELECT COUNT(*) AS total FROM ordem WHERE cod_cliente = '$codigo_cliente'";
+  $query = "SELECT COUNT(*) AS total FROM agendamento WHERE cod_cliente = '$codigo_cliente'";
   $resultado = mysqli_query($conexao, $query);
   $dados = mysqli_fetch_array($resultado);
   return $dados['total'] > 0;

@@ -40,9 +40,9 @@
             <hr class="sidebar-divider my-0">
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="terceirizado.php">
+                <a class="nav-link" href="funcionario.php">
                     <i class="fa fa-handshake"></i>
-                    <span>Terceirizados</span></a>
+                    <span>Funcionários</span></a>
                 </li>
 
                 <!-- Divider -->

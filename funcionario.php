@@ -21,10 +21,10 @@ unset ($_SESSION['telefone']);
 
                 <div class="row">
                     <div class="col-md-8">
-                        <h6 class="m-0 font-weight-bold text-primary" id="title">GERENCIAR INFORMAÇÕES DOS TERCEIRIZADOS</h6>
+                        <h6 class="m-0 font-weight-bold text-primary" id="title">GERENCIAR INFORMAÇÕES DOS FUNCIONÁRIOS</h6>
                     </div>
                     <div class="col-md-4 card_button_title">
-                        <a title="Adicionar novo terceirizado" href="cad_terceirizado.php"><button type="button" class="btn btn-primary btn-sm card_button_title" data-toggle="modal" id=" "> <i class="fa fa-handshake">&nbsp;</i> Adicionar Terceirizado</button></a>
+                        <a title="Adicionar novo funcionário" href="cad_funcionario.php"><button type="button" class="btn btn-primary btn-sm card_button_title" data-toggle="modal" id=" "> <i class="fa fa-handshake">&nbsp;</i> Adicionar Funcionário</button></a>
 
                     </div>
                 </div>
@@ -75,18 +75,18 @@ unset ($_SESSION['telefone']);
                         </thead>
                         <tbody>
                             <?php 
-                            require_once ("bd/bd_terceirizado.php");
-                            $terceirizados = listaTerceirizados();
-                            foreach($terceirizados as $dados): 
+                            require_once ("bd/bd_funcionario.php");
+                            $funcionarios = listaFuncionarios();
+                            foreach($funcionarios as $dados): 
                                 ?>
                                 <tr>
                                     <td style="display:none";><?= $dados['cod'] ?></td>
                                     <td><?= $dados['nome'] ?></td>
                                     <td><?= $dados['telefone'] ?></td>
-                                    <td>Terceirizado</td>
+                                    <td>Funcionário</td>
                                     <td class="text-center"><?= ($dados['status'] == 1 ? '<span class="badge badge-info">Ativo</span>' : '<span class="badge badge-warning">Inativo</span>') ?></td>
                                     <td class="text-center"> 
-                                        <a title="Atualizar" href="editar_terceirizado.php?cod=<?=$dados['cod']; ?>" class="btn btn-sm btn-success"><i class="fas fa-edit">&nbsp;</i>Atualizar</a>
+                                        <a title="Atualizar" href="editar_funcionario.php?cod=<?=$dados['cod']; ?>" class="btn btn-sm btn-success"><i class="fas fa-edit">&nbsp;</i>Atualizar</a>
                                     </td>
                                     <td class="text-center">
                                         <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#excluir-<?=$dados['cod'];?>" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt">&nbsp;</i>Excluir</a>
@@ -98,12 +98,12 @@ unset ($_SESSION['telefone']);
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Excluir terceirizado</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">Excluir funcionário</h5>
                                             </div>
                                             <div class="modal-body">Deseja realmente excluir esta informação?</div>
                                             <div class="modal-footer">
-                                             <a href="remove_terceirizado.php?cod=<?=$dados['cod'];?>"><button class="btn btn-primary btn-user" type="button">Confirmar</button></a>
-                                             <a href="terceirizado.php"><button class="btn btn-danger btn-user" type="button">Cancelar</button></a>
+                                             <a href="remove_funcionario.php?cod=<?=$dados['cod'];?>"><button class="btn btn-primary btn-user" type="button">Confirmar</button></a>
+                                             <a href="funcionario.php"><button class="btn btn-danger btn-user" type="button">Cancelar</button></a>
 
                                          </div>
                                      </div>
@@ -128,4 +128,3 @@ unset ($_SESSION['telefone']);
     <?php
     require_once('footer.php');
     ?>
-

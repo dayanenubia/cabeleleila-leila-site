@@ -5,7 +5,7 @@ function conecta_db(){
     $servidor = "localhost";
     $usuario_db = "root";
     $senha_db = "";
-    $banco = "ordemservico";
+    $banco = "salao";
 
     //Abre uma conexao
     $conexao = mysqli_connect($servidor,$usuario_db,$senha_db,$banco);

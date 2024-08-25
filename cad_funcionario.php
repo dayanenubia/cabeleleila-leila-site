@@ -17,7 +17,7 @@ require_once('cep_envia.php');
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-md-8">
-                        <h6 class="m-0 font-weight-bold text-primary" id="title">ADICIONAR TERCEIRIZADO</h6>
+                        <h6 class="m-0 font-weight-bold text-primary" id="title">ADICIONAR FUNCIONÁRIO</h6>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@ require_once('cep_envia.php');
             endif;
             ?>
 
-                <form class="user" action="cad_terceirizado_envia.php" method="post" >
+                <form class="user" action="cad_funcionario_envia.php" method="post" >
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label> Nome Completo </label>
@@ -129,7 +129,7 @@ require_once('cep_envia.php');
 
                     <div class="card-footer text-muted" id="btn-form">
                         <div class=text-right>
-                            <a title="Voltar" href="terceirizado.php"><button type="button" class="btn btn-success"><i class="fas fa-arrow-circle-left"></i>&nbsp;</i>Voltar</button></a>
+                            <a title="Voltar" href="funcionario.php"><button type="button" class="btn btn-success"><i class="fas fa-arrow-circle-left"></i>&nbsp;</i>Voltar</button></a>
                             <a title="Adicionar"><button type="submit" name="updatebtn" class="btn btn-primary uptadebtn"><i class="fa fa-handshake">&nbsp;</i>Adicionar</button> </a>
                         </div>
                     </div>
