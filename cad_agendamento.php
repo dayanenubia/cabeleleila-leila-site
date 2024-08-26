@@ -89,7 +89,23 @@ $funcionarios = listaFuncionarios();
                             <input type="date" class="form-control form-control-user"
                             id="data_servico" name="data_servico" aria-describedby="emailHelp"
                             placeholder="00/00/0000" maxlength="10" onkeypress="mascaraData(this)"required>
-                        </div>                          
+                        </div> 
+                        
+                        <div class="form-group">
+                            <label> Horário do Serviço </label>
+                            <input type="time" class="form-control form-control-user"
+                            id="horario" name="horario" aria-describedby="horarioHelp"
+                            placeholder="00:00" required>
+                        </div>   
+                        
+                        <div class="col-sm-6">
+                            <label> Situação </label>
+                            <select class="form-control" id="status" name="status" required>
+                                <option value="1" <?php echo ($status == 1) ? 'selected': ''; ?>>Ativo</option>
+                                <option value="2" <?php echo ($status == 2) ? 'selected': ''; ?>>Executando</option>
+                                <option value="2" <?php echo ($status == 3) ? 'selected': ''; ?>>Concluido</option>
+                            </select>
+                        </div>
 
                     <div class="card-footer text-muted" id="btn-form">
                         <div class=text-right>

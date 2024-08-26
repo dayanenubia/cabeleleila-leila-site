@@ -1,20 +1,24 @@
-
 <?php
 require_once('valida_session.php');
 require_once('header.php'); 
 require_once('sidebar.php'); 
-require_once ("bd/bd_ordem.php");
+require_once ("bd/bd_agendamento.php"); // Alterado para bd_agendamento
 require_once ("bd/bd_cliente.php");
-require_once ("bd/bd_terceirizado.php");
+require_once ("bd/bd_funcionario.php");
 
-$dados = buscaOrdemadd();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+$dados = buscaAgendamentoAdd(); // Alterado para buscaAgendamento()
 
 $nome_cliente = $dados[0];
-$nome_terceirizado = $dados[1];
+$nome_funcionario = $dados[1]; // Atualizado para "funcionario"
 $nome_servico = $dados[2];
 $valor_servico = $dados[3];
 $data_servico = $dados[4];
 $status = $dados[5];
+$horario = $dados[6]; // Adicionando o horário
 ?>
 
 <!-- Main Content -->
@@ -29,7 +33,7 @@ $status = $dados[5];
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-md-8">
-                        <h6 class="m-0 font-weight-bold text-primary" id="title">ORDEM DE SERVIÇO</h6>
+                        <h6 class="m-0 font-weight-bold text-primary" id="title">AGENDAMENTO DE SERVIÇO</h6> <!-- Alterado para Agendamento -->
                     </div>
                 </div>
             </div>
@@ -48,7 +52,7 @@ $status = $dados[5];
             endif;
             ?>
 
-                <form class="user" action="cad_ordem_envia.php" method="post" >
+                <form class="user" action="cad_agendamento_envia.php" method="post"> <!-- Alterado para cad_agendamento_envia.php -->
                     
                         <div class="form-group">
                             <label> Nome do Cliente </label>
@@ -67,18 +71,23 @@ $status = $dados[5];
                         </div> 
 
                         <div class="form-group">
-                            <label> Terceirizado </label>
-                            <input type="text" class="form-control form-control-user" id="nome_terceirizado" name="nome_terceirizado" value="<?= $nome_servico ?>" readonly>
+                            <label> Funcionário </label>
+                            <input type="text" class="form-control form-control-user" id="nome_funcionario" name="nome_funcionario" value="<?= $nome_funcionario ?>" readonly>
                         </div>
 
                          <div class="form-group">
                             <label> Data do Serviço </label>
                             <input type="text" class="form-control form-control-user" id="data_servico" name="data_servico" value="<?= date('d/m/Y',strtotime($data_servico)) ?>" readonly>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label> Horário do Serviço </label>
+                            <input type="text" class="form-control form-control-user" id="horario" name="horario" value="<?= isset($horario) ? $horario : '' ?>" readonly>
                         </div>                          
 
                     <div class="card-footer text-muted" id="btn-form">
-                        <div class=text-right>
-                            <a title="Voltar" href="ordem.php"><button type="button" class="btn btn-success"><i class="fas fa-arrow-circle-left"></i>&nbsp;</i>Voltar</button></a>
+                        <div class="text-right">
+                            <a title="Voltar" href="agendamento.php"><button type="button" class="btn btn-success"><i class="fas fa-arrow-circle-left"></i>&nbsp;Voltar</button></a>
                         </div>
                     </div>
                 </form>  
@@ -94,5 +103,3 @@ $status = $dados[5];
 <?php
 require_once('footer.php');
 ?>
-
-

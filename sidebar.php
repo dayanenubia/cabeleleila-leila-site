@@ -58,7 +58,7 @@
                     <hr class="sidebar-divider my-0">
                     <!-- Nav Item - Dashboard -->
                     <li class="nav-item active">
-                        <a class="nav-link" href="ordem.php">
+                        <a class="nav-link" href="agendamento.php">
                             <i class="fas fa-fw fa-clipboard-list"></i>
                             <span>Gerar Ordem de Serviço</span></a>
                         </li>

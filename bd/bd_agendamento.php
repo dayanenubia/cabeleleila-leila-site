@@ -31,7 +31,7 @@ function consultaStatusFuncionario($cod_usuario, $status){
     return $total;
 }
 
-function listaAgendamento(){
+function listaAgendamento() {
     $conexao = conecta_db();
     $agendamento = array();
     $query = "SELECT
@@ -40,6 +40,7 @@ function listaAgendamento(){
               t.nome AS nome_funcionario,
               s.nome AS nome_servico,
               o.data_servico AS data_servico,
+              o.horario AS horario,
               o.status AS status
               FROM agendamento o, servico s, cliente c, funcionario t
               WHERE o.cod_cliente = c.cod AND
@@ -47,18 +48,19 @@ function listaAgendamento(){
                     o.cod_funcionario = t.cod
               ORDER by o.status ASC";
   
-    $resultado = mysqli_query($conexao,$query);
-    while($dados = mysqli_fetch_array($resultado)) {
-      array_push($agendamento,$dados);
+    $resultado = mysqli_query($conexao, $query);
+    while ($dados = mysqli_fetch_array($resultado)) {
+        array_push($agendamento, $dados);
     }
   
     return $agendamento;
 }
 
-function cadastraAgendamento($cod_cliente, $cod_servico, $cod_funcionario, $data_servico, $status, $data){
+
+function cadastraAgendamento($cod_cliente, $cod_servico, $cod_funcionario, $data_servico, $horario, $status, $data){
     $conexao = conecta_db();
-    $query = "INSERT INTO agendamento(cod_cliente, cod_servico, cod_funcionario, data_servico, status, data) 
-              VALUES ('$cod_cliente','$cod_servico','$cod_funcionario','$data_servico','$status','$data')";
+    $query = "INSERT INTO agendamento(cod_cliente, cod_servico, cod_funcionario, data_servico, horario, status, data) 
+              VALUES ('$cod_cliente','$cod_servico','$cod_funcionario','$data_servico','$horario','$status','$data')";
   
     $resultado = mysqli_query($conexao,$query);
     $dados = mysqli_affected_rows($conexao);
@@ -66,7 +68,7 @@ function cadastraAgendamento($cod_cliente, $cod_servico, $cod_funcionario, $data
     return $dados;
 }
 
-function buscaAgendamentoAdd(){
+function buscaAgendamentoAdd() {
     $conexao = conecta_db();
     $query = "SELECT 
               c.nome AS nome_cliente,
@@ -74,6 +76,7 @@ function buscaAgendamentoAdd(){
               s.nome AS nome_servico,
               s.valor AS valor_servico,
               o.data_servico AS data_servico,
+              o.horario AS horario,
               o.status AS status
               FROM agendamento o, servico s, cliente c, funcionario t 
               WHERE o.cod_cliente = c.cod AND 
@@ -87,7 +90,8 @@ function buscaAgendamentoAdd(){
     return $dados;
 }
 
-function buscaAgendamentoEditar($codigo){
+
+function buscaAgendamentoEditar($codigo) {
     $conexao = conecta_db();
     $query = "SELECT 
               o.cod AS cod,
@@ -95,6 +99,7 @@ function buscaAgendamentoEditar($codigo){
               t.nome AS nome_funcionario,
               s.nome AS nome_servico,
               o.data_servico AS data_servico,
+              o.horario AS horario,
               o.status AS status,
               t.cod AS cod_funcionario
               FROM agendamento o, servico s, cliente c, funcionario t 
@@ -109,22 +114,23 @@ function buscaAgendamentoEditar($codigo){
     return $dados;
 }
 
-function editarAgendamento($codigo, $cod_funcionario, $data_servico, $status, $data){
+
+function editarAgendamento($codigo, $cod_funcionario, $data_servico, $horario, $status, $data) {
     $conexao = conecta_db();
     $query = "SELECT * 
               FROM agendamento
               WHERE cod='$codigo'";
   
-    $resultado = mysqli_query($conexao,$query);
+    $resultado = mysqli_query($conexao, $query);
     $dados = mysqli_num_rows($resultado);
   
-    if($dados == 1){
-      $query = "UPDATE agendamento
-                SET cod_funcionario = '$cod_funcionario', data_servico = '$data_servico', status = '$status', data = '$data'
-                WHERE cod = '$codigo'";
-       $resultado = mysqli_query($conexao,$query);
-       $dados = mysqli_affected_rows($conexao);
-       return $dados;
+    if ($dados == 1) {
+        $query = "UPDATE agendamento
+                  SET cod_funcionario = '$cod_funcionario', data_servico = '$data_servico', horario = '$horario', status = '$status', data = '$data'
+                  WHERE cod = '$codigo'";
+        $resultado = mysqli_query($conexao, $query);
+        $dados = mysqli_affected_rows($conexao);
+        return $dados;
     }
 }
 
@@ -186,22 +192,22 @@ function removeAgendamento($codigo){
     return $dados;
 }
 
-function editarAgendamentoFuncionario($codigo, $data_servico, $status, $data){
+function editarAgendamentoFuncionario($codigo, $data_servico, $horario, $status, $data) {
     $conexao = conecta_db();
     $query = "SELECT * 
               FROM agendamento
               WHERE cod='$codigo'";
   
-    $resultado = mysqli_query($conexao,$query);
+    $resultado = mysqli_query($conexao, $query);
     $dados = mysqli_num_rows($resultado);
   
-    if($dados == 1){
-      $query = "UPDATE agendamento
-                SET data_servico = '$data_servico', status = '$status', data = '$data'
-                WHERE cod = '$codigo'";
-       $resultado = mysqli_query($conexao,$query);
-       $dados = mysqli_affected_rows($conexao);
-       return $dados;
+    if ($dados == 1) {
+        $query = "UPDATE agendamento
+                  SET data_servico = '$data_servico', horario = '$horario', status = '$status', data = '$data'
+                  WHERE cod = '$codigo'";
+        $resultado = mysqli_query($conexao, $query);
+        $dados = mysqli_affected_rows($conexao);
+        return $dados;
     }
 }
 ?>
