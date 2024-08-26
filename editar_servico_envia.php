@@ -1,6 +1,10 @@
 <?php
 require_once("valida_session.php");
 require_once ("bd/bd_servico.php");
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 	     
 $codigo = $_POST["cod"];
 $nome = $_POST["nome"];

@@ -17,16 +17,18 @@ function listaServicos(){
     return $usuarios;
 }
 
-function cadastraServico($nome,$valor,$data){
+function cadastraServico($nome, $valor, $data) {
   $conexao = conecta_db();
-  $query = "INSERT INTO servico(nome,valor,data) 
-            VALUES ('$nome','$valor','$data')";
+  // Substituir a vírgula por ponto no valor
+  $valor = str_replace(',', '.', $valor);
+  $query = "INSERT INTO servico (nome, valor, data) VALUES ('$nome', '$valor', '$data')";
 
-  $resultado = mysqli_query($conexao,$query);
+  $resultado = mysqli_query($conexao, $query);
   $dados = mysqli_affected_rows($conexao);
 
   return $dados;
 }
+
 
 function buscaServicoeditar($codigo){
   $conexao = conecta_db();
@@ -50,6 +52,7 @@ function editarServico($codigo,$nome,$valor,$data){
   $dados = mysqli_num_rows($resultado);
 
   if($dados == 1){
+    $valor = str_replace(',', '.', $valor);
     $query = "UPDATE  servico
               SET nome = '$nome',valor = '$valor',data ='$data'
               WHERE cod = '$codigo'";
@@ -67,9 +70,9 @@ function removeServico($codigo){
     return $dados;
 
 }
-function servicoVinculadoOrdem($codigo_servico) {
+function servicoVinculadoAgendamento($codigo_servico) {
   $conexao = conecta_db();
-  $query = "SELECT COUNT(*) AS total FROM ordem WHERE cod_servico = '$codigo_servico'";
+  $query = "SELECT COUNT(*) AS total FROM agendamento WHERE cod_servico = '$codigo_servico'";
   $resultado = mysqli_query($conexao, $query);
   $dados = mysqli_fetch_array($resultado);
   return $dados['total'] > 0;
