@@ -2,7 +2,7 @@
 require_once('valida_session.php');
 require_once('header.php'); 
 require_once('sidebar.php'); 
-require_once ("bd/bd_ordem.php");
+require_once ("bd/bd_agendamento.php");
 ?>
 
 <!-- Main Content -->
@@ -22,7 +22,7 @@ require_once ("bd/bd_ordem.php");
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                            Ordens de Serviço Abertas</div>
+                            Agendamentos</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                             <?php
                                 if ($_SESSION['perfil'] == 1) {
@@ -63,7 +63,7 @@ require_once ("bd/bd_ordem.php");
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            Ordens de Serviço em Execussão</div>
+                            </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                               <?php
                                 if ($_SESSION['perfil'] == 1) {

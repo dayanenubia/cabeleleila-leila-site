@@ -60,7 +60,7 @@ function listaAgendamento() {
 function cadastraAgendamento($cod_cliente, $cod_servico, $cod_funcionario, $data_servico, $horario, $status, $data){
     $conexao = conecta_db();
     $query = "INSERT INTO agendamento(cod_cliente, cod_servico, cod_funcionario, data_servico, horario, status, data) 
-              VALUES ('$cod_cliente','$cod_servico','$cod_funcionario','$data_servico','$horario','$status','$data')";
+              VALUES ('$cod_cliente','$cod_servico','$cod_funcionario','$data_servico','$horario',1,'$data')";
   
     $resultado = mysqli_query($conexao,$query);
     $dados = mysqli_affected_rows($conexao);

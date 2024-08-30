@@ -1,128 +1,138 @@
 <?php
 require_once('valida_session.php');
-require_once('header.php'); 
-require_once('sidebar.php'); 
+require_once('header.php');
+require_once('sidebar.php');
 require_once ("bd/bd_servico.php");
 require_once ("bd/bd_cliente.php");
 require_once ("bd/bd_funcionario.php");
+
 
 $clientes = listaClientes();
 $servicos = listaServicos();
 $funcionarios = listaFuncionarios();
 ?>
 
+
 <!-- Main Content -->
 <div id="content">
 
-    <?php require_once('navbar.php');?>
 
-    <!-- Begin Page Content -->
-    <div class="container-fluid">
+   <?php require_once('navbar.php');?>
 
-        <div class="card shadow mb-2">
-            <div class="card-header py-3">
-                <div class="row">
-                    <div class="col-md-8">
-                        <h6 class="m-0 font-weight-bold text-primary" id="title">ADICIONAR AGENDAMENTO DE SERVIÇO</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-             <?php
-             if (isset($_SESSION['texto_erro'])):
-                ?>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong><i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;<?= $_SESSION['texto_erro'] ?></strong> 
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <?php
-                unset($_SESSION['texto_erro']);
-            endif;
-            ?>
+
+   <!-- Begin Page Content -->
+   <div class="container-fluid">
+
+
+       <div class="card shadow mb-2">
+           <div class="card-header py-3">
+               <div class="row">
+                   <div class="col-md-8">
+                       <h6 class="m-0 font-weight-bold text-primary" id="title">ADICIONAR AGENDAMENTO DE SERVIÇO</h6>
+                   </div>
+               </div>
+           </div>
+           <div class="card-body">
             <?php
-            if (isset($_SESSION['texto_sucesso'])):
-                ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong><i class="fas fa-check"></i>&nbsp;&nbsp;<?= $_SESSION['texto_sucesso'] ?></strong> 
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <?php
-                unset($_SESSION['texto_sucesso']);
-            endif;
-            ?>
+            if (isset($_SESSION['texto_erro'])):
+               ?>
+               <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                   <strong><i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;<?= $_SESSION['texto_erro'] ?></strong>
+                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+               <?php
+               unset($_SESSION['texto_erro']);
+           endif;
+           ?>
+           <?php
+           if (isset($_SESSION['texto_sucesso'])):
+               ?>
+               <div class="alert alert-success alert-dismissible fade show" role="alert">
+                   <strong><i class="fas fa-check"></i>&nbsp;&nbsp;<?= $_SESSION['texto_sucesso'] ?></strong>
+                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+               <?php
+               unset($_SESSION['texto_sucesso']);
+           endif;
+           ?>
 
-                <form class="user" action="cad_agendamento_envia.php" method="post" >
-                    
+
+               <form class="user" action="cad_agendamento_envia.php" method="post" >
+                  
+                       <div class="form-group">
+                           <label> Nome do Cliente </label>
+                           <select class="form-control" id="cod_cliente" name="cod_cliente">
+                               <?php foreach($clientes as $dados):?>
+                               <option value="<?=$dados['cod']?>"><?=$dados['nome']?></option>
+                               <?php endforeach ?>
+                           </select>
+                       </div>
+
+
+                       <div class="form-group">
+                           <label> Servico </label>
+                           <select class="form-control" id="cod_servico" name="cod_servico">
+                               <?php foreach($servicos as $dados):?>
+                               <option value="<?=$dados['cod']?>"><?=$dados['nome']?></option>
+                               <?php endforeach ?>
+                           </select>
+                       </div>
+
+
+                       <div class="form-group">
+                           <label> Funcionário </label>
+                           <select class="form-control" id="cod_funcionario" name="cod_funcionario">
+                               <?php foreach($funcionarios as $dados):?>
+                               <option value="<?=$dados['cod']?>"><?=$dados['nome']?></option>
+                               <?php endforeach ?>
+                           </select>
+                       </div>
+
+
                         <div class="form-group">
-                            <label> Nome do Cliente </label>
-                            <select class="form-control" id="cod_cliente" name="cod_cliente">
-                                <?php foreach($clientes as $dados):?>
-                                <option value="<?=$dados['cod']?>"><?=$dados['nome']?></option> 
-                                <?php endforeach ?>
-                            </select>
-                        </div>
+                           <label> Data do Serviço </label>
+                           <input type="date" class="form-control form-control-user"
+                           id="data_servico" name="data_servico" aria-describedby="emailHelp"
+                           placeholder="00/00/0000" maxlength="10" onkeypress="mascaraData(this)"required>
+                       </div>  
+                       
+                       <div class="form-group">
+                           <label> Horario </label>
+                           <input type="time" class="form-control form-control-user" id="horario" name="horario" aria-describedby="emailHelp"
+                             placeholder="00:00" required>
+                       </div>  
 
-                        <div class="form-group">
-                            <label> Serviço </label>
-                            <select class="form-control" id="cod_servico" name="cod_servico">
-                                <?php foreach($servicos as $dados):?>
-                                <option value="<?=$dados['cod']?>"><?=$dados['nome']?></option> 
-                                <?php endforeach ?>
-                            </select>
-                        </div>
 
-                        <div class="form-group">
-                            <label> Funcionário </label>
-                            <select class="form-control" id="cod_funcionario" name="cod_funcionario">
-                                <?php foreach($funcionarios as $dados):?>
-                                <option value="<?=$dados['cod']?>"><?=$dados['nome']?></option> 
-                                <?php endforeach ?>
-                            </select>
-                        </div>
+                   <div class="card-footer text-muted" id="btn-form">
+                       <div class=text-right>
+                           <a title="Voltar" href="ordem.php"><button type="button" class="btn btn-success"><i class="fas fa-arrow-circle-left"></i>&nbsp;</i>Voltar</button></a>
+                           <a title="Adicionar"><button type="submit" name="updatebtn" class="btn btn-primary uptadebtn"><i class="fas fa-fw fa-clipboard-list">&nbsp;</i>Adicionar</button> </a>
+                       </div>
+                   </div>
+               </form> 
+           </div>
+       </div>
 
-                         <div class="form-group">
-                            <label> Data do Serviço </label>
-                            <input type="date" class="form-control form-control-user"
-                            id="data_servico" name="data_servico" aria-describedby="emailHelp"
-                            placeholder="00/00/0000" maxlength="10" onkeypress="mascaraData(this)"required>
-                        </div> 
-                        
-                        <div class="form-group">
-                            <label> Horário do Serviço </label>
-                            <input type="time" class="form-control form-control-user"
-                            id="horario" name="horario" aria-describedby="horarioHelp"
-                            placeholder="00:00" required>
-                        </div>   
-                        
-                        <div class="col-sm-6">
-                            <label> Situação </label>
-                            <select class="form-control" id="status" name="status" required>
-                                <option value="1" <?php echo ($status == 1) ? 'selected': ''; ?>>Ativo</option>
-                                <option value="2" <?php echo ($status == 2) ? 'selected': ''; ?>>Executando</option>
-                                <option value="2" <?php echo ($status == 3) ? 'selected': ''; ?>>Concluido</option>
-                            </select>
-                        </div>
 
-                    <div class="card-footer text-muted" id="btn-form">
-                        <div class=text-right>
-                            <a title="Voltar" href="agendamento.php"><button type="button" class="btn btn-success"><i class="fas fa-arrow-circle-left"></i>&nbsp;</i>Voltar</button></a>
-                            <a title="Adicionar"><button type="submit" name="updatebtn" class="btn btn-primary uptadebtn"><i class="fas fa-fw fa-clipboard-list">&nbsp;</i>Adicionar</button> </a>
-                        </div>
-                    </div>
-                </form>  
-            </div>
-        </div>
+   </div>
+   <!-- /.container-fluid -->
 
-    </div>
-    <!-- /.container-fluid -->
 
 </div>
+
 
 <!-- End of Main Content -->
 <?php
 require_once('footer.php');
 ?>
+
+
+
+
+
+
+
