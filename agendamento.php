@@ -4,152 +4,119 @@ require_once('header.php');
 require_once('sidebar.php');
 ?>
 
-
 <!-- Main Content -->
 <div id="content">
 
-
    <?php require_once('navbar.php');?>
-
 
    <!-- Begin Page Content -->
    <div class="container-fluid">
 
+       <h1 class="h3 mb-4 text-gray-800">Agende um atendimento</h1>
+       <p>Selecione data, horário e informe o nome do cliente para criar o agendamento</p>
 
-       <div class="card shadow mb-2">
-           <div class="card-header py-3">
-
-
-               <div class="row">
-                   <div class="col-md-8">
-                       <h6 class="m-0 font-weight-bold text-primary" id="title">GERENCIAR ORDEM DE SERVIÇO</h6>
-                   </div>
-                   <div class="col-md-4 card_button_title">
-                       <a title="Adicionar nova ordem" href="cad_ordem.php"><button type="button" class="btn btn-primary btn-sm card_button_title" data-toggle="modal" id=" "> <i class="fas fa-fw fa-clipboard-list">&nbsp;</i> Adicionar Ordem</button></a>
-
-
-                   </div>
-               </div>
-
-
-           </div>
-           <div class="card-body">
-               <?php
-               if (isset($_SESSION['texto_erro'])):
-                   ?>
-                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                       <strong><i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;<?= $_SESSION['texto_erro'] ?></strong>
-                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                           <span aria-hidden="true">&times;</span>
-                       </button>
-                   </div>
-                   <?php
-                   unset($_SESSION['texto_erro']);
-               endif;
-               ?>
-
-
-               <?php
-               if (isset($_SESSION['texto_sucesso'])):
-                   ?>
-                   <div class="alert alert-success alert-dismissible fade show" role="alert">
-                       <strong><i class="fas fa-check"></i>&nbsp;&nbsp;<?= $_SESSION['texto_sucesso'] ?></strong>
-                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                           <span aria-hidden="true">&times;</span>
-                       </button>
-                   </div>
-                   <?php
-                   unset($_SESSION['texto_sucesso']);
-               endif;
-               ?>
-               <div class="table-responsive">
-                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                       <thead>
-                           <tr>
-                               <th style="display:none";>cod</th>
-                               <th>Nome do Cliente</th>
-                               <th>Terceirizado</th>
-                               <th>Serviço</th>
-                               <th class="text-center">Data do Serviço</th>
-                               <th class="text-center">Situação</th>
-                               <th class="text-center" data-orderable="false">Atualizar</th>
-                               <th class="text-center" data-orderable="false">Excluir</th>
-                           </tr>
-                       </thead>
-                       <tbody>
-                           <?php
-                           require_once ("bd/bd_agendamento.php");
-                           $ordem = listaAgendamento();
-                           foreach($ordem as $dados):
-                               ?>
-                               <tr>
-                                   <td style="display:none";><?= $dados[0] ?></td>
-                                   <td><?= $dados[1] ?></td>
-                                   <td><?= $dados[2] ?></td>
-                                   <td><?= $dados[3] ?></td>
-                                   <td class="text-center"><?= date('d/m/Y',strtotime($dados[4]))?></td>
-                                   <td class="text-center"><?= ($dados[5] == 1) ? '<span class="badge badge-danger">Aberta</span>' : (($dados[5] == 2)?'<span class="badge badge-warning">Executando</span>':'<span class="badge badge-info">Concluida</span>') ?></td>
-                                   <td class="text-center">
-                                       <?php if($dados[5] == 1):?>
-                                           <a title="Atualizar" href="editar_agendamento.php?cod=<?=$dados[0]; ?>" class="btn btn-sm btn-success"><i class="fas fa-edit">&nbsp;</i>Atualizar</a>
-                                       <?php endif ?>
-                                   </td>
-                                   <td class="text-center">
-                                   <?php if (($dados[5] == 1) or ($dados[5] == 3)):?>
-                                       <a title="Excluir" href="javascript:void(0)" data-toggle="modal" data-target="#excluir-<?=$dados[0];?>" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt">&nbsp;</i>Excluir</a>
-                                   <?php endif ?>
-                                   </td>
-                               </tr>
-
-
-
-
-                               <div class="modal fade" id="excluir-<?=$dados[0];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
-                                   <div class="modal-dialog" role="document">
-                                       <div class="modal-content">
-                                           <div class="modal-header">
-                                               <h5 class="modal-title" id="exampleModalLabel">Excluir ordem</h5>
+       <form action="processa_agendamento.php" method="post">
+           <div class="row">
+               <div class="col-md-8">
+                   <!-- Services Cards -->
+                   <div class="card mb-4">
+                       <div class="card-body">
+                           <div class="row">
+                               <!-- Service 1 -->
+                               <div class="col-md-12 mb-3">
+                                   <div class="card">
+                                       <div class="row no-gutters">
+                                           <div class="col-md-4">
+                                               <img src="caminho/para/imagem1.jpg" class="card-img" alt="Corte de cabelo">
                                            </div>
-                                           <div class="modal-body">Deseja realmente excluir esta informação?</div>
-                                           <div class="modal-footer">
-                                            <a href="remove_ordem.php?cod=<?=$dados[0];?>"><button class="btn btn-primary btn-user" type="button">Confirmar</button></a>
-                                            <a href="ordem.php"><button class="btn btn-danger btn-user" type="button">Cancelar</button></a>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-                           <?php endforeach ?>  
-                       </tbody>
-                   </table>
+                                           <div class="col-md-8">
+                                               <div class="card-body">
+                                                   <h5 class="card-title">Corte de cabelo</h5>
+                                                   <p class="card-text">R$80,00</p>
+                                                   <p class="card-text"><small class="text-muted">10/06/2024</small></p>
+                                                   <input type="radio" name="servico" value="Corte de cabelo" required> Selecionar este serviço
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                               <!-- Service 2 -->
+                               <div class="col-md-12 mb-3">
+                                   <div class="card">
+                                       <div class="row no-gutters">
+                                           <div class="col-md-4">
+                                               <img src="caminho/para/imagem2.jpg" class="card-img" alt="Hidratação">
+                                           </div>
+                                           <div class="col-md-8">
+                                               <div class="card-body">
+                                                   <h5 class="card-title">Hidratação</h5>
+                                                   <p class="card-text">R$35,00</p>
+                                                   <p class="card-text"><small class="text-muted">10/06/2024</small></p>
+                                                   <input type="radio" name="servico" value="Hidratação"> Selecionar este serviço
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                               <!-- Service 3 -->
+                               <div class="col-md-12 mb-3">
+                                   <div class="card">
+                                       <div class="row no-gutters">
+                                           <div class="col-md-4">
+                                               <img src="caminho/para/imagem3.jpg" class="card-img" alt="Penteado">
+                                           </div>
+                                           <div class="col-md-8">
+                                               <div class="card-body">
+                                                   <h5 class="card-title">Penteado</h5>
+                                                   <p class="card-text">R$54,00</p>
+                                                   <p class="card-text"><small class="text-muted">07/07/2024</small></p>
+                                                   <input type="radio" name="servico" value="Penteado"> Selecionar este serviço
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
                </div>
 
+               <div class="col-md-4">
+                   <!-- Calendar and time selection -->
+                   <div class="card mb-4">
+                       <div class="card-body">
+                           <h5 class="card-title">Data</h5>
+                           <input type="date" name="data" class="form-control mb-3" required>
 
+                           <h5 class="card-title">Horários</h5>
+                           <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
+                               <label class="btn btn-outline-secondary">
+                                   <input type="radio" name="horario" value="09:00" autocomplete="off" required> 09:00
+                               </label>
+                               <label class="btn btn-outline-secondary">
+                                   <input type="radio" name="horario" value="10:00" autocomplete="off"> 10:00
+                               </label>
+                               <label class="btn btn-outline-secondary">
+                                   <input type="radio" name="horario" value="11:00" autocomplete="off"> 11:00
+                               </label>
+                               <!-- Adicione mais horários conforme necessário -->
+                           </div>
+
+                           <h5 class="card-title">Cliente</h5>
+                           <input type="text" name="cliente" class="form-control mb-3" placeholder="Nome do cliente" required>
+
+                           <button type="submit" class="btn btn-success btn-block">Agendar</button>
+                       </div>
+                   </div>
+               </div>
            </div>
-
-
-       </div>
-       <!-- /.container-fluid -->
-
+       </form>
 
    </div>
    <!-- End of Main Content -->
 
+   <?php require_once('footer.php'); ?>
 
+</div>
 
-
-   <?php
-   require_once('footer.php');
-   ?>
-
-
-
-
-
-
-
+<?php require_once('footer.php'); ?>

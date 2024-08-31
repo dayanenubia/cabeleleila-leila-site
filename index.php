@@ -18,9 +18,10 @@ error_reporting(E_ALL);
                         
                         <!-- Título Centralizado -->
                         <div class="text-center mb-4">
-                            <h1 class="h3 text-primary font-weight-bold">Cabeleleila Leila</h1>
-                            <hr style="width: 50%; margin: auto; border-top: 2px solid #007bff;">
+                            <h1 class="h3 text-green font-weight-bold">Cabeleleila Leila</h1>
+                            <hr style="width: 50%; margin: auto; border-top: 2px solid #28a745;">
                         </div>
+
 
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">LOGIN</h1>

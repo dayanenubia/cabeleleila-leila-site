@@ -3,20 +3,20 @@ require_once('valida_session.php');
 require_once('header.php'); 
 require_once('sidebar.php'); 
 require_once ("bd/bd_ordem.php");
-require_once ("bd/bd_terceirizado.php");
+require_once ("bd/bd_funcionario.php");
 
 $codigo = $_GET['cod'];
 $dados = buscaOrdemeditar($codigo);
 
 $cod = $dados[0];
 $nome_cliente = $dados[1];
-$nome_terceirizado = $dados[2];
+$nome_funcionario = $dados[2];
 $nome_servico = $dados[3];
 $data_servico = $dados[4];
 $status = $dados[5];
-$cod_terceirizado = $dados[6];
+$cod_funcionario = $dados[6];
 
-$terceirizados = listaTerceirizados();
+$funcionarios = listaFuncionarios();
 
 ?>
 

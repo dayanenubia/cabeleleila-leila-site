@@ -19,7 +19,6 @@
 
 }
 
-
 .table td, .table th {
     padding-right: 0;
 }
@@ -150,3 +149,6 @@
     vertical-align:top;
 }
 
+.text-green {
+    color: #28a745; /* Cor verde personalizada */
+}
