@@ -15,18 +15,8 @@ unset ($_SESSION['valor']);
     <div class="container-fluid">
 
         <div class="card shadow mb-2">
-            <div class="card-header py-3">
-
-                <div class="row">
-                    <div class="col-md-8">
-                        <h6 class="m-0 font-weight-bold text-primary" id="title">GERENCIAR INFORMAÇÕES DOS SERVIÇOS</h6>
-                    </div>
-                    <div class="col-md-4 card_button_title">
-                        <a title="Adicionar novo serviço" href="cad_servico.php"><button type="button" class="btn btn-primary btn-sm card_button_title" data-toggle="modal" id=" "> <i class="fas fa-fw fa-wrench">&nbsp;</i> Adicionar Serviço</button></a>
-
-                    </div>
-                </div>
-
+            <div class="card-header py-3 text-center">
+                <h6 class="m-0 font-weight-bold text-primary" id="title">GERENCIAR INFORMAÇÕES DOS SERVIÇOS</h6>
             </div>
             <div class="card-body">
                 <?php
@@ -57,66 +47,76 @@ unset ($_SESSION['valor']);
                 endif;
                 ?>
 
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th style="display:none";>cod</th>
-                                <th>Nome</th>
-                                <th>valor</th>
-                                <th class="text-center" data-orderable="false">Atualizar</th>
-                                <th class="text-center" data-orderable="false">Excluir</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php 
-                            require_once ("bd/bd_servico.php");
-                            $servicos = listaServicos();
-                            foreach($servicos as $dados): 
-                                ?>
-                                <tr>
-                                    <td style="display:none";><?= $dados['cod'] ?></td>
-                                    <td><?= $dados['nome'] ?></td>
-                                    <td><?= number_format($dados['valor'] ,2,",",".");?></td>
-                                    <td class="text-center"> 
-                                        <a title="Atualizar" href="editar_servico.php?cod=<?=$dados['cod']; ?>" class="btn btn-sm btn-success"><i class="fas fa-edit">&nbsp;</i>Atualizar</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#excluir-<?=$dados['cod'];?>" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt">&nbsp;</i>Excluir</a>
-                                    </td> 
-                                </tr>
-                                <div class="modal fade" id="excluir-<?=$dados['cod'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Excluir servico</h5>
-                                            </div>
-                                            <div class="modal-body">Deseja realmente excluir esta informação?</div>
-                                            <div class="modal-footer">
-                                             <a href="remove_servico.php?cod=<?=$dados['cod'];?>"><button class="btn btn-primary btn-user" type="button">Confirmar</button></a>
-                                             <a href="servico.php"><button class="btn btn-danger btn-user" type="button">Cancelar</button></a>
+                <!-- Botão Adicionar Serviço -->
+                <div class="text-right mb-3">
+                    <a title="Adicionar novo serviço" href="cad_servico.php">
+                        <button type="button" class="btn btn-primary btn-sm">
+                            <i class="fas fa-fw fa-wrench">&nbsp;</i> Adicionar Serviço
+                        </button>
+                    </a>
+                </div>
 
-                                         </div>
-                                     </div>
-                                 </div>
-                             </div>
+                <!-- Cards de Serviços -->
+                <div class="row">
+                    <?php 
+                    require_once ("bd/bd_servico.php");
+                    $servicos = listaServicos();
+                    foreach($servicos as $dados): 
+                        ?>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                <!-- Imagem do Serviço -->
+                                <img src="caminho/para/imagem/<?=$dados['imagem'];?>" class="card-img-top" alt="Imagem do Serviço">
 
+                                <!-- Corpo do Card -->
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= $dados['nome'] ?></h5>
+                                    <p class="card-text">Valor: R$<?= number_format($dados['valor'] ,2,",",".");?></p>
+                                </div>
 
-                            <?php endforeach ?>   
-                        </tbody>
-                    </table>
+                                <!-- Botões de Ação -->
+                                <div class="card-footer">
+                                    <a href="editar_servico.php?cod=<?=$dados['cod']; ?>" class="btn btn-sm btn-success">
+                                        <i class="fas fa-edit"></i> Atualizar
+                                    </a>
+                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#excluir-<?=$dados['cod'];?>" class="btn btn-sm btn-danger">
+                                        <i class="fas fa-trash-alt"></i> Excluir
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal de Confirmação de Exclusão -->
+                        <div class="modal fade" id="excluir-<?=$dados['cod'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Excluir Serviço</h5>
+                                    </div>
+                                    <div class="modal-body">Deseja realmente excluir esta informação?</div>
+                                    <div class="modal-footer">
+                                        <a href="remove_servico.php?cod=<?=$dados['cod'];?>">
+                                            <button class="btn btn-primary btn-user" type="button">Confirmar</button>
+                                        </a>
+                                        <a href="servico.php">
+                                            <button class="btn btn-danger btn-user" type="button">Cancelar</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <?php endforeach ?>
                 </div>
 
             </div>
-
         </div>
         <!-- /.container-fluid -->
 
     </div>
     <!-- End of Main Content -->
 
-
     <?php
     require_once('footer.php');
     ?>
-
+</div>
