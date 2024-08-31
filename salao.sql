@@ -55,28 +55,31 @@ INSERT INTO `cliente` (`cod`, `nome`, `email`, `telefone`, `senha`, `cep`, `ende
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `ordem`
+-- Estrutura da tabela `agendamento`
 --
 
-CREATE TABLE `ordem` (
+CREATE TABLE `agendamento` (
   `cod` int(11) NOT NULL,
   `cod_cliente` int(11) NOT NULL,
-  `cod_terceirizado` int(11) NOT NULL,
+  `cod_funcionario` int(11) NOT NULL,
   `cod_servico` int(11) NOT NULL,
-  `data_servico` date NOT NULL,
+  `dia` int(2) NOT NULL,
+  `mes` int(2) NOT NULL,
+  `ano` int(4) NOT NULL,
+  `horario` time NOT NULL,
   `status` int(11) NOT NULL,
   `data` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `ordem`
+-- Extraindo dados da tabela `agendamento`
 --
 
-INSERT INTO `ordem` (`cod`, `cod_cliente`, `cod_terceirizado`, `cod_servico`, `data_servico`, `status`, `data`) VALUES
-(10, 5, 8, 5, '2022-07-16', 2, '2022-07-15'),
-(11, 4, 7, 4, '2022-07-17', 1, '2022-07-14'),
-(12, 5, 8, 5, '2022-07-21', 3, '2022-07-15'),
-(13, 4, 7, 4, '2022-07-19', 1, '2022-07-15');
+INSERT INTO `agendamento` (`cod`, `cod_cliente`, `cod_funcionario`, `cod_servico`, `dia`, `mes`, `ano`, `horario`, `status`, `data`) VALUES
+(10, 5, 8, 5, 16, 7, 2022, '10:00:00', 2, '2022-07-15'),
+(11, 4, 7, 4, 17, 7, 2022, '11:00:00', 1, '2022-07-14'),
+(12, 5, 8, 5, 21, 7, 2022, '14:00:00', 3, '2022-07-15'),
+(13, 4, 7, 4, 19, 7, 2022, '15:00:00', 1, '2022-07-15');
 
 -- --------------------------------------------------------
 
@@ -102,10 +105,10 @@ INSERT INTO `servico` (`cod`, `nome`, `valor`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `terceirizado`
+-- Estrutura da tabela `funcionario`
 --
 
-CREATE TABLE `terceirizado` (
+CREATE TABLE `funcionario` (
   `cod` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -123,10 +126,10 @@ CREATE TABLE `terceirizado` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `terceirizado`
+-- Extraindo dados da tabela `funcionario`
 --
 
-INSERT INTO `terceirizado` (`cod`, `nome`, `email`, `telefone`, `senha`, `cep`, `endereco`, `numero`, `bairro`, `cidade`, `estado`, `status`, `perfil`, `data`) VALUES
+INSERT INTO `funcionario` (`cod`, `nome`, `email`, `telefone`, `senha`, `cep`, `endereco`, `numero`, `bairro`, `cidade`, `estado`, `status`, `perfil`, `data`) VALUES
 (7, 'Dalyla Alvarenga ', 'dalylalvarenga@gmail.com', '(35) 99984-9594', 'e10adc3949ba59abbe56e057f20f883e', '37750-000', 'Avenida Dolores Silva', '335', 'Centro', 'Aguanil', 'MG', 1, 3, 22),
 (8, 'Maria Aparecida', 'maria@gmail.com', '(35) 99984-9594', 'e10adc3949ba59abbe56e057f20f883e', '37750-000', 'Avenida Dolores Silva', '335', 'Centro', 'Aguanil', 'MG', 1, 3, 22);
 
@@ -171,13 +174,13 @@ ALTER TABLE `cliente`
   ADD PRIMARY KEY (`cod`);
 
 --
--- Índices para tabela `ordem`
+-- Índices para tabela `agendamento`
 --
-ALTER TABLE `ordem`
+ALTER TABLE `agendamento`
   ADD PRIMARY KEY (`cod`),
   ADD KEY `foreign_key_cod_cliente` (`cod_cliente`),
   ADD KEY `foreign_key_cod_servico` (`cod_servico`),
-  ADD KEY `foreign_key_cod_terceirizado` (`cod_terceirizado`);
+  ADD KEY `foreign_key_cod_funcionario` (`cod_funcionario`);
 
 --
 -- Índices para tabela `servico`
@@ -186,9 +189,9 @@ ALTER TABLE `servico`
   ADD PRIMARY KEY (`cod`);
 
 --
--- Índices para tabela `terceirizado`
+-- Índices para tabela `funcionario`
 --
-ALTER TABLE `terceirizado`
+ALTER TABLE `funcionario`
   ADD PRIMARY KEY (`cod`);
 
 --
@@ -208,9 +211,9 @@ ALTER TABLE `cliente`
   MODIFY `cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de tabela `ordem`
+-- AUTO_INCREMENT de tabela `agendamento`
 --
-ALTER TABLE `ordem`
+ALTER TABLE `agendamento`
   MODIFY `cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
@@ -220,30 +223,31 @@ ALTER TABLE `servico`
   MODIFY `cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de tabela `terceirizado`
+-- AUTO_INCREMENT de tabela `funcionario`
 --
-ALTER TABLE `terceirizado`
+ALTER TABLE `funcionario`
   MODIFY `cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- Restrições para despejos de tabelas
+-- Restrições para tabelas despejadas
 --
 
 --
--- Limitadores para a tabela `ordem`
+-- Restrições para tabela `agendamento`
 --
-ALTER TABLE `ordem`
+ALTER TABLE `agendamento`
   ADD CONSTRAINT `foreign_key_cod_cliente` FOREIGN KEY (`cod_cliente`) REFERENCES `cliente` (`cod`),
-  ADD CONSTRAINT `foreign_key_cod_servico` FOREIGN KEY (`cod_servico`) REFERENCES `servico` (`cod`),
-  ADD CONSTRAINT `foreign_key_cod_terceirizado` FOREIGN KEY (`cod_terceirizado`) REFERENCES `terceirizado` (`cod`);
+  ADD CONSTRAINT `foreign_key_cod_funcionario` FOREIGN KEY (`cod_funcionario`) REFERENCES `funcionario` (`cod`),
+  ADD CONSTRAINT `foreign_key_cod_servico` FOREIGN KEY (`cod_servico`) REFERENCES `servico` (`cod`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
