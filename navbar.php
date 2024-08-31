@@ -5,7 +5,7 @@
     }elseif($_SESSION['perfil']==2){
         $texto = "PAINEL ADMINISTRATIVO DO CLIENTE";
     }else{
-        $texto = "PAINEL ADMINISTRATIVO DO TERCEIRIZADO";
+        $texto = "PAINEL ADMINISTRATIVO DO FUNCIONÁRIO";
     }
 
 ?>
@@ -53,9 +53,9 @@
         <?php
             if($_SESSION['perfil']== 3){
         ?>           
-            <a class="dropdown-item" href="editar_perfil_terceirizado.php">
+            <a class="dropdown-item" href="editar_perfil_funcionario.php">
                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-900"></i>
-            Perfil do Terceirizado
+            Perfil do Funcionário
         <?php
             }
         ?>

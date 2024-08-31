@@ -89,16 +89,12 @@ require_once('sidebar.php');
                                    <td><?= $dados[3] ?></td>
                                    <td class="text-center"><?= date('d/m/Y',strtotime($dados[4]))?></td>
                                    <td class="text-center"><?= ($dados[5] == 1) ? '<span class="badge badge-danger">Aberta</span>' : (($dados[5] == 2)?'<span class="badge badge-warning">Executando</span>':'<span class="badge badge-info">Concluida</span>') ?></td>
-                                   <td class="text-center">
-                                       <?php if($dados[5] == 1):?>
-                                           <a title="Atualizar" href="editar_agendamento.php?cod=<?=$dados[0]; ?>" class="btn btn-sm btn-success"><i class="fas fa-edit">&nbsp;</i>Atualizar</a>
-                                       <?php endif ?>
-                                   </td>
-                                   <td class="text-center">
-                                   <?php if (($dados[5] == 1) or ($dados[5] == 3)):?>
-                                       <a title="Excluir" href="javascript:void(0)" data-toggle="modal" data-target="#excluir-<?=$dados[0];?>" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt">&nbsp;</i>Excluir</a>
-                                   <?php endif ?>
-                                   </td>
+                                   <td class="text-center"> 
+                                        <a title="Atualizar" href="editar_agendamento.php?cod=<?=$dados['cod']; ?>" class="btn btn-sm btn-success"><i class="fas fa-edit">&nbsp;</i>Atualizar</a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#excluir-<?=$dados['cod'];?>" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt">&nbsp;</i>Excluir</a>
+                                    </td> 
                                </tr>
 
 

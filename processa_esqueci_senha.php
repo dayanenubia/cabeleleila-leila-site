@@ -6,8 +6,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $nova_senha = md5($_POST['nova_senha']); // Criptografa a nova senha
 
-    // Verifica se o e-mail existe nas tabelas usuario, cliente e terceirizado
-    $tabelas = ['usuario', 'cliente', 'terceirizado'];
+    // Verifica se o e-mail existe nas tabelas usuario, cliente e funcionario
+    $tabelas = ['usuario', 'cliente', 'funcionario'];
     $usuario_encontrado = false;
     $conexao = conecta_db(); // Chama a função para conectar ao banco
 

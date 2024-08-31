@@ -17,8 +17,8 @@ else{
 		require_once ("bd/bd_cliente.php");
 		$dados = checaCliente($email,$senha);
 	}else{
-		require_once ("bd/bd_terceirizado.php");
-		$dados = checaTerceirizado($email,$senha);
+		require_once ("bd/bd_funcionario.php");
+		$dados = checaFuncionario($email,$senha);
 	}
 
 	if($dados == "") {

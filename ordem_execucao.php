@@ -69,7 +69,7 @@ require_once('sidebar.php');
                             <tr>
                                 <th style="display:none";>cod</th>
                                 <th>Nome do Cliente</th>
-                                <th>Terceirizado</th>
+                                <th>Funcionário</th>
                                 <th>Serviço</th>
                                 <th class="text-center">Data do Serviço</th>
                                 <?php 
@@ -121,7 +121,7 @@ require_once('sidebar.php');
                                 <?php endif; endforeach; 
                             } 
                         if ($_SESSION['perfil'] == 3) {
-                            $ordem = listaOrdemTerceirizado();
+                            $ordem = listaOrdemFuncionario();
                             foreach($ordem as $dados): 
                                 if($dados[5] == 2): ?>
                                     <tr>
