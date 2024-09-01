@@ -9,10 +9,10 @@ error_reporting(E_ALL);
 $codigo = $_POST["cod"];
 $cod_funcionario = $_POST["cod_funcionario"];
 $data_servico = $_POST["data_servico"];
+$horario = $_POST["horario"];
 $status = $_POST["status"];
-$data = date("y/m/d");
 
-$dados = editarAgendamento($codigo, $cod_funcionario, $data_servico, $status, $data);
+$dados = editarAgendamento($codigo, $cod_funcionario, $data_servico, $horario, $status);
 if ($dados == 1){
     $_SESSION['texto_sucesso'] = 'Os dados do agendamento de serviço foram alterados no sistema.';
     header("Location: agendamento.php");

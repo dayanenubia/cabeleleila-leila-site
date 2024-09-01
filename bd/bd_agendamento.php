@@ -31,7 +31,7 @@ function consultaStatusFuncionario($cod_usuario, $status){
     return $total;
 }
 
-function listaAgendamento() {
+function listaAgendamentos() {
     $conexao = conecta_db();
     $agendamento = array();
     $query = "SELECT
@@ -115,7 +115,7 @@ function buscaAgendamentoEditar($codigo) {
 }
 
 
-function editarAgendamento($codigo, $cod_funcionario, $data_servico, $horario, $status, $data) {
+function editarAgendamento($codigo, $cod_funcionario, $data_servico, $horario, $status) {
     $conexao = conecta_db();
     $query = "SELECT * 
               FROM agendamento
@@ -126,7 +126,7 @@ function editarAgendamento($codigo, $cod_funcionario, $data_servico, $horario, $
   
     if ($dados == 1) {
         $query = "UPDATE agendamento
-                  SET cod_funcionario = '$cod_funcionario', data_servico = '$data_servico', horario = '$horario', status = '$status', data = '$data'
+                  SET cod_funcionario = '$cod_funcionario', data_servico = '$data_servico', horario = '$horario', status = '$status'
                   WHERE cod = '$codigo'";
         $resultado = mysqli_query($conexao, $query);
         $dados = mysqli_affected_rows($conexao);

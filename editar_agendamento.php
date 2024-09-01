@@ -13,8 +13,9 @@ $nome_cliente = $dados[1];
 $nome_funcionario = $dados[2];
 $nome_servico = $dados[3];
 $data_servico = $dados[4];
-$status = $dados[5];
-$cod_funcionario = $dados[6];
+$horario = $dados[5];
+$status = $dados[6];
+$cod_funcionario = $dados[7];
 
 $funcionarios = listaFuncionarios();
 
@@ -63,6 +64,10 @@ $funcionarios = listaFuncionarios();
                         <div class="col-sm-6">
                             <label> Data do Serviço </label>
                             <input type="date" class="form-control form-control-user" id="data_servico" name="data_servico" value="<?= $data_servico ?>" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <label> Horaário </label>
+                            <input type="time" class="form-control form-control-user" id="horario" name="horario" value="<?= $horario ?>" required>
                         </div>
                     </div>
 
