@@ -6,7 +6,9 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 ?>
-
+<header>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;700&display=swap" rel="stylesheet">
+</header>
 <body class="bg-light">
 
     <div class="container">
@@ -18,13 +20,13 @@ error_reporting(E_ALL);
                         
                         <!-- Título Centralizado -->
                         <div class="text-center mb-4">
-                            <h1 class="h3 text-green font-weight-bold">Cabeleleila Leila</h1>
+                            <h1 class="h3 text-green font-weight-bold font-newsreader">Cabeleleila Leila</h1>
                             <hr style="width: 50%; margin: auto; border-top: 2px solid #28a745;">
                         </div>
 
 
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">LOGIN</h1>
+                            <h1 class="h4 text-gray-900 mb-4 font-newsreader">LOGIN</h1>
                         </div>
 
                         <?php

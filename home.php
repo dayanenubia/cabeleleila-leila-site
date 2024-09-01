@@ -22,7 +22,7 @@ require_once ("bd/bd_agendamento.php");
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                            Agendamentos</div>
+                            Agendamentos marcados</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                             <?php
                                 if ($_SESSION['perfil'] == 1) {
@@ -63,6 +63,7 @@ require_once ("bd/bd_agendamento.php");
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                Agendamentos em atendimento  
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                               <?php
@@ -82,7 +83,7 @@ require_once ("bd/bd_agendamento.php");
                                 if ($_SESSION['perfil'] == 3) {
                                     $cod_usuario = $_SESSION['cod_usu'];
                                     $status = 2;
-                                    $total = consultaStatusTerceirizado($cod_usuario,$status);
+                                    $total = consultaStatusFuncionario($cod_usuario,$status);
                                     $totalValue = $total['total'];
                                     echo '<a href="ordem_execucao.php"' . $total['total'] . '" style="color: #f6c23e;">' . $total['total'] . '</a>';
                                 }
@@ -103,7 +104,7 @@ require_once ("bd/bd_agendamento.php");
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                            Ordens de Serviço Concluídas</div>
+                            Agendamentos concluídos</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 <?php
                                 if ($_SESSION['perfil'] == 1) {

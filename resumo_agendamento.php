@@ -17,8 +17,8 @@ $nome_funcionario = $dados[1]; // Atualizado para "funcionario"
 $nome_servico = $dados[2];
 $valor_servico = $dados[3];
 $data_servico = $dados[4];
-$status = $dados[5];
-$horario = $dados[6]; // Adicionando o horário
+$horario = $dados[5]; // Adicionando o horário
+$status = $dados[6];
 ?>
 
 <!-- Main Content -->

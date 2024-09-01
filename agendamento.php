@@ -84,7 +84,7 @@ require_once('sidebar.php');
             <td class="text-center"><?= date('H:i', strtotime($dados[5])) ?></td> <!-- Exibindo o horário -->
             <td class="text-center"><?= ($dados[6] == 1) ? '<span class="badge badge-danger">Aberto</span>' : (($dados[6] == 2) ? '<span class="badge badge-warning">Em Andamento</span>' : '<span class="badge badge-info">Concluído</span>') ?></td>
             <td class="text-center">
-                <?php if($dados[6] == 1): ?>
+                <?php if($dados[6] == 1 || ($dados[6] == 2)): ?>
                     <a title="Atualizar" href="editar_agendamento.php?cod=<?=$dados[0]; ?>" class="btn btn-sm btn-success"><i class="fas fa-edit">&nbsp;</i>Atualizar</a>
                 <?php endif ?>
             </td>
