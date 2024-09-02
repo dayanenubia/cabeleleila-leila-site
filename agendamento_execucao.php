@@ -17,13 +17,14 @@ require_once('sidebar.php');
 
                 <div class="row">
                     <div class="col-md-8">
-                        <h6 class="m-0 font-weight-bold text-primary" id="title">AGENDAMENTO EM EXECUÇÃO</h6>
+                        <h6 class="m-0 font-weight-bold text-primary" id="title">AGENDAMENTOS CONCLUÍDOS</h6>
                     </div>
+
                     <?php 
                     if ($_SESSION['perfil'] == 1) {
                     ?>
                         <div class="col-md-4 card_button_title">
-                            <a title="Adicionar novo agendamento" href="cad_ordem.php">
+                            <a title="Adicionar novo agendamento" href="cad_agendamento.php">
                                 <button type="button" class="btn btn-primary btn-sm card_button_title" data-toggle="modal" id="">
                                     <i class="fas fa-fw fa-clipboard-list">&nbsp;</i> Adicionar Agendamento
                                 </button>
@@ -75,23 +76,19 @@ require_once('sidebar.php');
                                 <?php 
                                 if ($_SESSION['perfil'] == 1) {
                                 ?>
-                                    <th class="text-center" data-orderable="false">Atualizar</th>
+                                    <th class="text-center" data-orderable="false">Excluir</th>
                                 <?php 
-                                    } elseif ($_SESSION['perfil'] == 3) {
-                                ?>
-                                    <th class="text-center" data-orderable="false">Atualizar</th>
-                                <?php 
-                                    }
+                                }
                                 ?>
                             </tr>
                         </thead>
                         <tbody>
                         <?php
-                        require_once ("bd/bd_ordem.php");
+                        require_once ("bd/bd_agendamento.php");
                         if ($_SESSION['perfil'] == 1) {
-                            $ordem = listaOrdem();
-                            foreach($ordem as $dados): 
-                                if($dados[5] == 2): ?>
+                            $agendamento = listaAgendamento();
+                            foreach($agendamento as $dados): 
+                                if($dados[5] == 3): ?>
                                     <tr>
                                         <td style="display:none"><?= $dados[0] ?></td>
                                         <td><?= $dados[1] ?></td>
@@ -99,43 +96,53 @@ require_once('sidebar.php');
                                         <td><?= $dados[3] ?></td>
                                         <td class="text-center"><?= date('d/m/Y',strtotime($dados[4]))?></td>
                                         <td class="text-center">
-                                            <?php if(($dados[5] == 1) or ($dados[5] == 2)):?>
-                                                <a title="Atualizar" href="editar_ordem.php?cod=<?=$dados[0]; ?>" class="btn btn-sm btn-success"><i class="fas fa-edit">&nbsp;</i>Atualizar</a>
-                                            <?php endif ?>
-                                        </td>
+                                        <?php if (($dados[5] == 1) or ($dados[5] == 3)):?> 
+                                            <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#excluir-<?=$dados[0];?>" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt">&nbsp;</i>Excluir</a>
+                                        <?php endif ?>
+                                        </td> 
                                     </tr>
+
+
+                                    <div class="modal fade" id="excluir-<?=$dados[0];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Excluir agendamento</h5>
+                                                </div>
+                                                <div class="modal-body">Deseja realmente excluir esta informação?</div>
+                                                <div class="modal-footer">
+                                                <a href="remove_agendamento.php?cod=<?=$dados[0];?>"><button class="btn btn-primary btn-user" type="button">Confirmar</button></a>
+                                                <a href="agendamento.php"><button class="btn btn-danger btn-user" type="button">Cancelar</button></a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <?php endif; endforeach; 
                             } 
                         
                         if ($_SESSION['perfil'] == 2) {
-                            $ordem = listaOrdemCliente();
-                            foreach($ordem as $dados): 
-                                if($dados[5] == 2): ?>
+                            $agendamento = listaAgendamentoCliente();
+                            foreach($agendamento as $dados): 
+                                if($dados[5] == 3): ?>
                                     <tr>
                                         <td style="display:none"><?= $dados[0] ?></td>
                                         <td><?= $dados[1] ?></td>
                                         <td><?= $dados[2] ?></td>
                                         <td><?= $dados[3] ?></td>
                                         <td class="text-center"><?= date('d/m/Y',strtotime($dados[4]))?></td>
-                                        
                                 <?php endif; endforeach; 
                             } 
                         if ($_SESSION['perfil'] == 3) {
-                            $ordem = listaOrdemFuncionario();
-                            foreach($ordem as $dados): 
-                                if($dados[5] == 2): ?>
+                            $agendamento = listaAgendamentoFuncionario();
+                            foreach($agendamento as $dados): 
+                                if($dados[5] == 3): ?>
                                     <tr>
                                         <td style="display:none"><?= $dados[0] ?></td>
                                         <td><?= $dados[1] ?></td>
                                         <td><?= $dados[2] ?></td>
                                         <td><?= $dados[3] ?></td>
                                         <td class="text-center"><?= date('d/m/Y',strtotime($dados[4]))?></td>
-                                        <td class="text-center">
-                                            <?php if($dados[5] == 2):?>
-                                                <a title="Atualizar" href="editar_ordem_funcionario.php?cod=<?=$dados[0]; ?>" class="btn btn-sm btn-success"><i class="fas fa-edit">&nbsp;</i>Atualizar</a>
-                                            <?php endif ?>
-                                        </td>
-                                    </tr>
                                 <?php endif; endforeach; 
                             } 
                                 ?>

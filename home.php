@@ -1,7 +1,6 @@
 <?php
 require_once('valida_session.php');
 require_once('header.php'); 
-require_once('sidebar.php'); 
 require_once ("bd/bd_agendamento.php");
 ?>
 
