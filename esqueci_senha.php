@@ -3,6 +3,53 @@ session_start();
 require_once('header.php');
 ?>
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Newsreader', serif;
+        }
+        .bg-gradient-primary {
+            background: linear-gradient(to right, #426B1F, #426B1F);
+        }
+        .card {
+            border: none;
+        }
+        .text-gray-900 {
+            color: #426B1F !important;
+        }
+        .btn-primary {
+            background-color: #426B1F;
+            border-color: #426B1F;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        .btn-primary:hover, .btn-primary:focus {
+            background-color: #365e1f;
+            border-color: #365e1f;
+        }
+        .btn-secondary:hover, .btn-secondary:focus {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+    </style>
+</head>
 <body class="bg-gradient-primary">
     <div class="container">
         <div class="row justify-content-center">
@@ -68,3 +115,4 @@ require_once('header.php');
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="js/sb-admin-2.min.js"></script>
 </body>
+</html>

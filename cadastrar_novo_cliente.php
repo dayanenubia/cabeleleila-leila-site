@@ -1,9 +1,3 @@
-<?php
-session_start();
-require_once('bd/conecta_db.php');
-require_once('cep_envia.php');
-?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -12,8 +6,40 @@ require_once('cep_envia.php');
     <title>Cadastrar Cliente</title>
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sb-admin-2.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Newsreader', serif; /* Definir a fonte */
+            background-color: #426B1F; /* Definir a cor de fundo para verde escuro */
+        }
+
+        .text-gray-900 {
+            color: #426B1F; /* Alterar a cor do texto para verde escuro */
+        }
+        .alert-danger {
+            color: #426B1F; /* Alterar a cor do texto para verde escuro */
+            border-color: #426B1F; /* Alterar a borda da alerta para verde escuro */
+        }
+        .alert-success {
+            color: #426B1F; /* Alterar a cor do texto para verde escuro */
+            border-color: #426B1F; /* Alterar a borda da alerta para verde escuro */
+        }
+        .btn-primary {
+            background-color: #426B1F; /* Alterar a cor de fundo dos botões primários para verde escuro */
+            border-color: #426B1F; /* Alterar a cor da borda dos botões primários para verde escuro */
+        }
+        .btn-primary:hover {
+            background-color: #365E3F; /* Alterar a cor de fundo dos botões primários ao passar o mouse para um verde um pouco mais escuro */
+            border-color: #365E3F; /* Alterar a cor da borda dos botões primários ao passar o mouse */
+        }
+        a {
+            color: #426B1F; /* Alterar a cor dos links para verde escuro */
+        }
+        a:hover {
+            color: #365E3F; /* Alterar a cor dos links ao passar o mouse para um verde um pouco mais escuro */
+        }
+    </style>
 </head>
-<body class="bg-gradient-primary">
+<body>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-10 col-lg-12 col-md-9">
@@ -91,6 +117,7 @@ require_once('cep_envia.php');
                                             <label> Estado </label>
                                             <input type="text" class="form-control form-control-user" id="estado" name="estado" value="<?php if (!empty($_SESSION['estado'])) { echo $_SESSION['estado'];} ?>" 
                                             placeholder="Ex: MG" required>
+                                        </div>
                                         <div class="form-group">
                                             <label> Telefone - Ex.: (11) 91234-1234 </label>
                                             <input type="tel" class="form-control form-control-user" id="telefone" name="telefone" placeholder="(xx)xxxxx-xxxx"  value="<?php if (!empty($_SESSION['telefone'])) { echo $_SESSION['telefone'];} ?>" maxlength="15" required >
@@ -141,23 +168,6 @@ require_once('cep_envia.php');
                     console.error('Erro ao buscar o CEP:', error);
                 });
         }
-    });
-
-    // Script para formatação do telefone
-    document.addEventListener('DOMContentLoaded', function () {
-        const telefoneInput = document.getElementById('telefone');
-
-        telefoneInput.addEventListener('input', function (e) {
-            let value = e.target.value;
-
-            // Remove tudo que não é dígito
-            value = value.replace(/\D/g, '');
-
-            // Aplica a máscara
-            value = value.replace(/^(\d{2})(\d{1,5})(\d{0,4})/, '($1) $2-$3');
-
-            e.target.value = value;
-        });
     });
     </script>
 </body>
