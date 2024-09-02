@@ -13,7 +13,7 @@ if ($_SESSION['perfil'] == 1) {
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
 <!-- Topbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow mb-4 static-top" style="font-family: 'Newsreader', serif;">
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="font-family: 'Newsreader', serif;">
     <div class="container-fluid">
         <!-- Navbar brand -->
         <a class="navbar-brand" href="#" style="color: #426B1F;">

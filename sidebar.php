@@ -40,9 +40,9 @@
             <hr class="sidebar-divider my-0">
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="funcionario.php">
+                <a class="nav-link" href="terceirizado.php">
                     <i class="fa fa-handshake"></i>
-                    <span>Funcionários</span></a>
+                    <span>Terceirizados</span></a>
                 </li>
 
                 <!-- Divider -->
@@ -58,7 +58,7 @@
                     <hr class="sidebar-divider my-0">
                     <!-- Nav Item - Dashboard -->
                     <li class="nav-item active">
-                        <a class="nav-link" href="agendamento.php">
+                        <a class="nav-link" href="ordem.php">
                             <i class="fas fa-fw fa-clipboard-list"></i>
                             <span>Gerar Ordem de Serviço</span></a>
                         </li>
