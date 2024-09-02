@@ -31,7 +31,7 @@ function consultaStatusFuncionario($cod_usuario, $status){
     return $total;
 }
 
-function listaAgendamentos() {
+function listaAgendamento() {
     $conexao = conecta_db();
     $agendamento = array();
     $query = "SELECT

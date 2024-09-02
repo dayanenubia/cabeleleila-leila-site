@@ -17,15 +17,15 @@ require_once('sidebar.php');
 
                 <div class="row">
                     <div class="col-md-8">
-                        <h6 class="m-0 font-weight-bold text-primary" id="title">ORDEM DE SERVIÇO EM EXECUÇÃO</h6>
+                        <h6 class="m-0 font-weight-bold text-primary" id="title">AGENDAMENTO EM EXECUÇÃO</h6>
                     </div>
                     <?php 
                     if ($_SESSION['perfil'] == 1) {
                     ?>
                         <div class="col-md-4 card_button_title">
-                            <a title="Adicionar nova ordem" href="cad_ordem.php">
+                            <a title="Adicionar novo agendamento" href="cad_ordem.php">
                                 <button type="button" class="btn btn-primary btn-sm card_button_title" data-toggle="modal" id="">
-                                    <i class="fas fa-fw fa-clipboard-list">&nbsp;</i> Adicionar Ordem
+                                    <i class="fas fa-fw fa-clipboard-list">&nbsp;</i> Adicionar Agendamento
                                 </button>
                             </a>
                         </div>
@@ -132,7 +132,7 @@ require_once('sidebar.php');
                                         <td class="text-center"><?= date('d/m/Y',strtotime($dados[4]))?></td>
                                         <td class="text-center">
                                             <?php if($dados[5] == 2):?>
-                                                <a title="Atualizar" href="editar_ordem_treceirizado.php?cod=<?=$dados[0]; ?>" class="btn btn-sm btn-success"><i class="fas fa-edit">&nbsp;</i>Atualizar</a>
+                                                <a title="Atualizar" href="editar_ordem_funcionario.php?cod=<?=$dados[0]; ?>" class="btn btn-sm btn-success"><i class="fas fa-edit">&nbsp;</i>Atualizar</a>
                                             <?php endif ?>
                                         </td>
                                     </tr>
@@ -155,4 +155,3 @@ require_once('sidebar.php');
     <?php
     require_once('footer.php');
     ?>
-
