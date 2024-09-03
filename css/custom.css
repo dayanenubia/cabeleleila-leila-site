@@ -174,4 +174,11 @@
     color: #28a745; /* Cor verde personalizada */
 }
 
+h1, .titulo-cabeleleila {
+    margin-top: 20px; /* Aumenta a margem superior */
+    margin-bottom: 20px; /* Aumenta a margem inferior */
+    margin-left: 20px; /* Aumenta a margem esquerda */
+    margin-right: 20px; /* Aumenta a margem direita */
+    text-align: center; /* Centraliza o texto, opcional */
+}
 

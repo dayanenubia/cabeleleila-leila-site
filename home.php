@@ -1,149 +1,43 @@
 <?php
-require_once('valida_session.php');
-require_once('header.php'); 
-
-require_once ("bd/bd_agendamento.php");
+    require_once('valida_session.php');
+    require_once('header.php'); 
+    require_once("bd/bd_agendamento.php");
 ?>
 
 <!-- Main Content -->
-<div id="content">
- <?php require_once('navbar.php');?>
+<div id="content" class="container-fluid p-0">
+    <?php require_once('navbar.php');?>
 
- <!-- Begin Page Content -->
- <div class="container-fluid">
+    <!-- Begin Page Content -->
+    <div class="container-fluid p-5">
+        <!-- Hero Section -->
+        <div class="text-center">
+            <h1 class="display-4" style="font-family: 'Newsreader', serif; color: #426B1F;">
+                "Cabeleleila Leila. Cabelos, unhas, hidratação e unhas. Cabeleleila Leila. Venha fazer suas unhas e seus cabelos".
+            </h1>
+            <a href="servicos.php" class="btn btn-success mt-4" style="background-color: #426B1F;">Conheça nossos serviços</a>
+        </div>
 
-    <!-- Content Row -->
-    <div class="row">
-
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4" id="cards-notice">
-            <div class="card border-left-danger shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                            Agendamentos Abertos</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                            <?php
-                                if ($_SESSION['perfil'] == 1) {
-                                    $status = 1;
-                                    $total = consultaStatusUsuario($status);
-                                    $totalValue = $total['total'];
-                                    echo '<a href="agendamento_aberto.php"' . $total['total'] . '" style="color: #e74a3b;">' . $total['total'] . '</a>';
-                                }
-                                if ($_SESSION['perfil'] == 2) {
-                                    $cod_usuario = $_SESSION['cod_usu'];
-                                    $status = 1;
-                                    $total = consultaStatusCliente($cod_usuario,$status);
-                                    $totalValue = $total['total'];
-                                    echo '<a href="agendamento_aberto.php"' . $total['total'] . '" style="color: #e74a3b;">' . $total['total'] . '</a>';
-                                }
-                                if ($_SESSION['perfil'] == 3) {
-                                    $cod_usuario = $_SESSION['cod_usu'];
-                                    $status = 1;
-                                    $total = consultaStatusFuncionario($cod_usuario,$status);
-                                    $totalValue = $total['total'];
-                                    echo '<a href="agendamento_aberto.php"' . $total['total'] . '" style="color: #e74a3b;">' . $total['total'] . '</a>';
-                                }
-                            ?>
-
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
+        <!-- Image Section -->
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <img src="img/salao1.jpg" class="img-fluid" alt="Imagem do salão" style="border-radius: 8px;">
+                <p class="text-center mt-2">Imagem 1: Ambiente interno do salão</p>
+            </div>
+            <div class="col-md-6">
+                <img src="img/salao2.jpg" class="img-fluid" alt="Imagem do salão" style="border-radius: 8px;">
+                <p class="text-center mt-2">Imagem 2: Espaço para cuidados com o cabelo e unhas</p>
             </div>
         </div>
 
-        <div class="col-xl-3 col-md-6 mb-4" id="cards-notice">
-            <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                            Agendamentos Concluídos</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                <?php
-                                if ($_SESSION['perfil'] == 1) {
-                                    $status = 3;
-                                    $total = consultaStatusUsuario($status);
-                                    $totalValue = $total['total'];
-                                    echo '<a href="agendamento_concluidos.php"' . $total['total'] . '" style="color: #36b9cc;">' . $total['total'] . '</a>';
-                                }
-                                if ($_SESSION['perfil'] == 2) {
-                                    $cod_usuario = $_SESSION['cod_usu'];
-                                    $status = 3;
-                                    $total = consultaStatusCliente($cod_usuario,$status);
-                                    $totalValue = $total['total'];
-                                    echo '<a href="agendamento_concluidos.php"' . $total['total'] . '" style="color: #36b9cc;">' . $total['total'] . '</a>';
-                                }
-                                if ($_SESSION['perfil'] == 3) {
-                                    $cod_usuario = $_SESSION['cod_usu'];
-                                    $status = 3;
-                                    $total = consultaStatusFuncionario($cod_usuario,$status);
-                                    $totalValue = $total['total'];
-                                    echo '<a href="agendamento_concluidos.php"' . $total['total'] . '" style="color: #36b9cc;">' . $total['total'] . '</a>';
-                                }
-                            ?>  
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- About Section -->
+        <div class="mt-5">
+            <h2 class="text-center" style="font-family: 'Newsreader', serif; color: #426B1F;">Sobre Nós</h2>
+            <p class="text-justify mt-4" style="font-size: 1.2rem; line-height: 1.5;">
+                O salão Cabeleleila Leila foi fundado em 2005 por Leila Martins, uma apaixonada por beleza e bem-estar, com o objetivo de proporcionar uma experiência única e transformadora a cada cliente. A missão do salão é oferecer cuidados de qualidade, com profissionais experientes e técnicas de ponta. Trabalhamos para atender cada cliente com dedicação, garantindo sua satisfação e promovendo o bem-estar, através de serviços estéticos personalizados e especializados.
+            </p>
         </div>
-        
-        <div class="col-xl-3 col-md-6 mb-4" id="cards-notice">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            Agendamentos em Execução</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                              <?php
-                                if ($_SESSION['perfil'] == 1) {
-                                    $status = 2;
-                                    $total = consultaStatusUsuario($status);
-                                    $totalValue = $total['total'];
-                                    echo '<a href="agendamento_execucao.php"' . $total['total'] . '" style="color: #f6c23e;">' . $total['total'] . '</a>';
-                                }
-                                if ($_SESSION['perfil'] == 2) {
-                                    $cod_usuario = $_SESSION['cod_usu'];
-                                    $status = 2;
-                                    $total = consultaStatusCliente($cod_usuario,$status);
-                                    $totalValue = $total['total'];
-                                    echo '<a href="agendamento_execucao.php"' . $total['total'] . '" style="color: #f6c23e;">' . $total['total'] . '</a>';
-                                }
-                                if ($_SESSION['perfil'] == 3) {
-                                    $cod_usuario = $_SESSION['cod_usu'];
-                                    $status = 2;
-                                    $total = consultaStatusFuncionario($cod_usuario,$status);
-                                    $totalValue = $total['total'];
-                                    echo '<a href="agendamento_execucao.php"' . $total['total'] . '" style="color: #f6c23e;">' . $total['total'] . '</a>';
-                                }
-                            ?>  
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-briefcase fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
-
+    <!-- /.container-fluid -->
+    <?php require_once('footer.php');?>
 </div>
-<!-- /.container-fluid -->
-
-</div>
-
-<?php
-require_once('footer.php');
-?>

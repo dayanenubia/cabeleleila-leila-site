@@ -16,7 +16,7 @@ if ($_SESSION['perfil'] == 1) {
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="font-family: 'Newsreader', serif;">
     <div class="container-fluid">
         <!-- Navbar brand -->
-        <a class="navbar-brand" href="#" style="color: #426B1F;">
+        <a class="navbar-brand" href="#" style="color: #426B1F; padding-left: 15px;">
             Cabeleleila Leila
         </a>
 
