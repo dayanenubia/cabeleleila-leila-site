@@ -58,14 +58,9 @@ require_once('bd/bd_servico.php'); // Inclua o arquivo que tem a função para r
                                 <option value=""> </option>
                                 <option value="Corte, lavagem e secagem">Corte, lavagem e secagem</option>
                                 <option value="Coloração">Coloração</option>
-                                <option value="Tratamentos">Tratamentos</option>
                                 <option value="Alisamento e relaxamento">Alisamento e relaxamento</option>
                                 <option value="Permanente e ondulado">Permanente e ondulado</option>
-                                <option value="Extensões">Extensões</option>
-                                <option value="Tratamento do couro cabeludo">Tratamento do couro cabeludo</option>
                                 <option value="Manicure e pedicure">Manicure e pedicure</option>
-                                <option value="Alongamento de unhas">Alongamento de unhas</option>
-                                <option value="Esmaltação em gel e outros">Esmaltação em gel e outros</option>
                             </select>
                         </div>
                         <div class="col-sm-6">
@@ -93,3 +88,4 @@ require_once('bd/bd_servico.php'); // Inclua o arquivo que tem a função para r
 <?php
 require_once('footer.php');
 ?>
+
