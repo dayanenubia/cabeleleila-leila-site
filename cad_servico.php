@@ -2,6 +2,8 @@
 require_once('valida_session.php');
 require_once('header.php'); 
 require_once('sidebar.php'); 
+require_once('bd/bd_servico.php'); // Inclua o arquivo que tem a função para recuperar tipos de serviço
+
 ?>
 
 <!-- Main Content -->
@@ -21,8 +23,8 @@ require_once('sidebar.php');
                 </div>
             </div>
             <div class="card-body">
-             <?php
-             if (isset($_SESSION['texto_erro'])):
+                <?php
+                if (isset($_SESSION['texto_erro'])):
                 ?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <strong><i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;<?= $_SESSION['texto_erro'] ?></strong> 
@@ -32,10 +34,10 @@ require_once('sidebar.php');
                 </div>
                 <?php
                 unset($_SESSION['texto_erro']);
-            endif;
-            ?>
-            <?php
-            if (isset($_SESSION['texto_sucesso'])):
+                endif;
+                ?>
+                <?php
+                if (isset($_SESSION['texto_sucesso'])):
                 ?>
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <strong><i class="fas fa-check"></i>&nbsp;&nbsp;<?= $_SESSION['texto_sucesso'] ?></strong> 
@@ -45,20 +47,31 @@ require_once('sidebar.php');
                 </div>
                 <?php
                 unset($_SESSION['texto_sucesso']);
-            endif;
-            ?>
+                endif;
+                ?>
 
                 <form class="user" action="cad_servico_envia.php" method="post" >
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label> Nome do Serviço </label>
-                            <input type="text" class="form-control form-control-user" id="nome" name="nome" value="<?php if (!empty($_SESSION['nome'])) { echo $_SESSION['nome'];} ?>"  
-                            placeholder="Nome Completo" required>
+                            <select class="form-control" id="nome" name="nome" required>
+                                <option value=""> </option>
+                                <option value="Corte, lavagem e secagem">Corte, lavagem e secagem</option>
+                                <option value="Coloração">Coloração</option>
+                                <option value="Tratamentos">Tratamentos</option>
+                                <option value="Alisamento e relaxamento">Alisamento e relaxamento</option>
+                                <option value="Permanente e ondulado">Permanente e ondulado</option>
+                                <option value="Extensões">Extensões</option>
+                                <option value="Tratamento do couro cabeludo">Tratamento do couro cabeludo</option>
+                                <option value="Manicure e pedicure">Manicure e pedicure</option>
+                                <option value="Alongamento de unhas">Alongamento de unhas</option>
+                                <option value="Esmaltação em gel e outros">Esmaltação em gel e outros</option>
+                            </select>
                         </div>
                         <div class="col-sm-6">
                             <label> Valor </label>
                             <input type="text" class="form-control form-control-user" id="valor" name="valor" value="<?php if (!empty($_SESSION['valor'])) { echo $_SESSION['valor'];} ?>" 
-                            placeholder="50.00" required>
+                            placeholder="Ex.: 50.00" required>
                         </div>
                     </div>
                                     
@@ -80,5 +93,3 @@ require_once('sidebar.php');
 <?php
 require_once('footer.php');
 ?>
-
-

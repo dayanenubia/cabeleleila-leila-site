@@ -1,13 +1,12 @@
 <?php
 require_once('valida_session.php');
 require_once('header.php'); 
-require_once('sidebar.php'); 
-unset ($_SESSION['nome']);
-unset ($_SESSION['valor']);
+unset($_SESSION['nome']);
+unset($_SESSION['valor']);
 ?>
 
 <!-- Main Content -->
-<div id="content">
+<div id="content" class="container-fluid p-0">
 
     <?php require_once('navbar.php');?>
 
@@ -16,7 +15,7 @@ unset ($_SESSION['valor']);
 
         <div class="card shadow mb-2">
             <div class="card-header py-3 text-center">
-                <h6 class="m-0 font-weight-bold text-primary" id="title">GERENCIAR INFORMAÇÕES DOS SERVIÇOS</h6>
+                <h6 class="m-0 font-weight-bold" id="title" style="color: #426B1F; font-family: 'Newsreader', serif;">GERENCIAR INFORMAÇÕES DOS SERVIÇOS</h6>
             </div>
             <div class="card-body">
                 <?php
@@ -50,7 +49,7 @@ unset ($_SESSION['valor']);
                 <!-- Botão Adicionar Serviço -->
                 <div class="text-right mb-3">
                     <a title="Adicionar novo serviço" href="cad_servico.php">
-                        <button type="button" class="btn btn-primary btn-sm">
+                        <button type="button" class="btn" style="background-color: #426B1F; color: white; font-family: 'Newsreader', serif;">
                             <i class="fas fa-fw fa-wrench">&nbsp;</i> Adicionar Serviço
                         </button>
                     </a>
@@ -59,27 +58,27 @@ unset ($_SESSION['valor']);
                 <!-- Cards de Serviços -->
                 <div class="row">
                     <?php 
-                    require_once ("bd/bd_servico.php");
+                    require_once("bd/bd_servico.php");
                     $servicos = listaServicos();
                     foreach($servicos as $dados): 
                         ?>
-                        <div class="col-md-4 mb-4">
+                        <div class="col-md-4 mb-5 px-4"> <!-- Aumenta o espaço entre os cards -->
                             <div class="card h-100">
                                 <!-- Imagem do Serviço -->
-                                <img src="caminho/para/imagem/<?=$dados['imagem'];?>" class="card-img-top" alt="Imagem do Serviço">
+                                <img src="img/salao1.jpg<?=$dados['imagem'];?>" class="card-img-top" alt="Imagem do Serviço">
 
                                 <!-- Corpo do Card -->
                                 <div class="card-body">
-                                    <h5 class="card-title"><?= $dados['nome'] ?></h5>
-                                    <p class="card-text">Valor: R$<?= number_format($dados['valor'] ,2,",",".");?></p>
+                                    <h5 class="card-title" style="font-family: 'Newsreader', serif;"><?= $dados['nome'] ?></h5>
+                                    <p class="card-text" style="font-family: 'Newsreader', serif;">Valor: R$<?= number_format($dados['valor'], 2, ",", ".");?></p>
                                 </div>
 
                                 <!-- Botões de Ação -->
                                 <div class="card-footer">
-                                    <a href="editar_servico.php?cod=<?=$dados['cod']; ?>" class="btn btn-sm btn-success">
+                                    <a href="editar_servico.php?cod=<?=$dados['cod']; ?>" class="btn btn-sm" style="background-color: #426B1F; color: white; font-family: 'Newsreader', serif;">
                                         <i class="fas fa-edit"></i> Atualizar
                                     </a>
-                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#excluir-<?=$dados['cod'];?>" class="btn btn-sm btn-danger">
+                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#excluir-<?=$dados['cod'];?>" class="btn btn-sm btn-danger" style="font-family: 'Newsreader', serif;">
                                         <i class="fas fa-trash-alt"></i> Excluir
                                     </a>
                                 </div>
@@ -91,15 +90,15 @@ unset ($_SESSION['valor']);
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Excluir Serviço</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel" style="color: #426B1F; font-family: 'Newsreader', serif;">Excluir Serviço</h5>
                                     </div>
-                                    <div class="modal-body">Deseja realmente excluir esta informação?</div>
+                                    <div class="modal-body" style="font-family: 'Newsreader', serif;">Deseja realmente excluir esta informação?</div>
                                     <div class="modal-footer">
                                         <a href="remove_servico.php?cod=<?=$dados['cod'];?>">
-                                            <button class="btn btn-primary btn-user" type="button">Confirmar</button>
+                                            <button class="btn btn-primary btn-user" style="background-color: #426B1F; color: white; font-family: 'Newsreader', serif;" type="button">Confirmar</button>
                                         </a>
                                         <a href="servico.php">
-                                            <button class="btn btn-danger btn-user" type="button">Cancelar</button>
+                                            <button class="btn btn-danger btn-user" style="font-family: 'Newsreader', serif;" type="button">Cancelar</button>
                                         </a>
                                     </div>
                                 </div>
