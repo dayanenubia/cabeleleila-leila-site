@@ -12,6 +12,10 @@ $clientes = listaClientes();
 $servicos = listaServicos();
 $funcionarios = listaFuncionarios();
 
+$dados = listaClientes(); // Alterado para buscaAgendamento()
+$cod = $dados[0];
+$nome = $dados[1];
+
 // Nome do serviço e foto correspondente
 $mapa_imagens = [
     'Corte, lavagem e secagem' => 'imagens_servicos/corte_lavagem_e_secagem.jpg',
@@ -23,17 +27,6 @@ $mapa_imagens = [
     // Adicione outros serviços e imagens aqui
 ];
 
-// Obter o ID do cliente logado da sessão
-$cliente_logado_id = isset($_SESSION['cod_cliente']) ? $_SESSION['cod_cliente'] : null;
-
-// Encontrar o cliente logado
-$cliente_logado = null;
-foreach ($clientes as $cliente) {
-    if ($cliente['cod'] == $cliente_logado_id) {
-        $cliente_logado = $cliente;
-        break;
-    }
-}
 ?>
 
 <!-- Main Content -->
@@ -72,7 +65,7 @@ foreach ($clientes as $cliente) {
                <?php endif; ?>
 
                <!-- Formulário de Agendamento -->
-               <form action="cad_agendamento_envia.php" method="post">
+               <form action="cad_agenda_cliente.php" method="post">
                    <div class="row">
                        <!-- Coluna dos Serviços -->
                        <div class="col-md-7 mb-5">
@@ -142,8 +135,13 @@ foreach ($clientes as $cliente) {
                                        <!-- Adicione mais horários conforme necessário -->
                                    </div>
                                    
-                                   <!-- Campo escondido para enviar o código do cliente logado -->
-                                   <input type="hidden" name="cod_cliente" value="<?= $cliente_logado_id ?>">
+                                   <h5 class="card-title" style="color: #426B1F;">Cliente</h5>
+                                   <select name="cod_cliente" class="form-control mb-3" required>
+                                       <option value="">Selecione um cliente</option>
+                                       <?php foreach($clientes as $cliente): ?>
+                                           <option value="<?= $cliente['cod'] ?>"><?= $cliente['nome'] ?></option>
+                                       <?php endforeach; ?>
+                                   </select>
 
                                    <h5 class="card-title" style="color: #426B1F;">Funcionário</h5>
                                    <select name="cod_funcionario" class="form-control mb-3" required>

@@ -96,7 +96,7 @@ error_reporting(E_ALL);
                             <a class="small" href="esqueci_senha.php" style="color: #426B1F;">Esqueci minha senha</a>
                         </div>
                         <div class="text-center mt-3">
-                            <a class="small" href="cadastrar_novo_cliente.php" style="color: #426B1F;">Cadastrar Cliente</a>
+                            <a class="small" href="cadastrar_novo_cliente.php" style="color: #426B1F;">Novo por aqui? Registre-se agora!</a>
                         </div>
 
                     </div>

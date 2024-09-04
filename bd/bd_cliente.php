@@ -140,4 +140,5 @@ function clienteVinculadoAgenda($codigo_cliente) {
   $dados = mysqli_fetch_array($resultado);
   return $dados['total'] > 0;
 }
+
 ?>
