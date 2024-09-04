@@ -1,19 +1,29 @@
 <?php
 require_once('valida_session.php');
 require_once('header.php');
-require_once('sidebar.php');
 require_once('bd/bd_servico.php');
 require_once('bd/bd_cliente.php');
 require_once('bd/bd_funcionario.php');
 
 // Obtendo clientes, serviços e funcionários do banco de dados
-$clientes = listaClientes(); // Função que retorna a lista de clientes
-$servicos = listaServicos(); // Função que retorna a lista de serviços
-$funcionarios = listaFuncionarios(); // Função que retorna a lista de funcionários
+$clientes = listaClientes();
+$servicos = listaServicos();
+$funcionarios = listaFuncionarios();
+
+// Nome do serviço e foto correspondente
+$mapa_imagens = [
+    'Corte, lavagem e secagem' => 'imagens_servicos/corte_lavagem_e_secagem.jpg',
+    'Coloração' => 'imagens_servicos/coloracao.jpg',
+    'Tratamentos' => 'imagens_servicos/tratamentos.jpg',
+    'Alisamento e relaxamento' => 'imagens_servicos/alisamento_e_relaxamento.jpg',
+    'Permanente e ondulado' => 'imagens_servicos/permanente_e_ondulado.png',
+    'Manicure e pedicure' => 'imagens_servicos/manicure_e_pedicure.png',
+    // Adicione outros serviços e imagens aqui
+];
 ?>
 
 <!-- Main Content -->
-<div id="content">
+<div id="content" class="container-fluid p-0" style="font-family: 'Newsreader', serif;">
    <?php require_once('navbar.php');?>
 
    <!-- Begin Page Content -->
@@ -21,7 +31,7 @@ $funcionarios = listaFuncionarios(); // Função que retorna a lista de funcion�
 
        <div class="card shadow mb-4">
            <div class="card-header py-3">
-               <h1 class="h3 mb-0 font-weight-bold text-primary">Adicionar Agendamento de Serviço</h1>
+               <h1 class="h3 mb-0 font-weight-bold" style="color: #426B1F;">Adicionar Agendamento de Serviço</h1>
            </div>
            <div class="card-body">
                <p>Preencha os dados abaixo para agendar um novo serviço.</p>
@@ -50,70 +60,40 @@ $funcionarios = listaFuncionarios(); // Função que retorna a lista de funcion�
                <!-- Formulário de Agendamento -->
                <form action="cad_agendamento_envia.php" method="post">
                    <div class="row">
-                       <!-- Seção de Clientes -->
-                       <div class="col-md-4">
-                           <div class="card mb-4">
-                               <div class="card-body">
-                                   <h5 class="card-title">Cliente</h5>
-                                   <select name="cod_cliente" class="form-control mb-3" required>
-                                       <option value="">Selecione um cliente</option>
-                                       <?php foreach($clientes as $cliente): ?>
-                                           <option value="<?= $cliente['cod'] ?>"><?= $cliente['nome'] ?></option>
-                                       <?php endforeach; ?>
-                                   </select>
-                               </div>
+                       <!-- Coluna dos Serviços -->
+                       <div class="col-md-7 mb-5">
+                           <div class="row">
+                               <?php foreach($servicos as $servico): ?>
+                                   <div class="col-md-4 mb-5 px-4">
+                                       <div class="card h-100" style="border: none;">
+                                           <img class="card-img-top" src="<?= $mapa_imagens[$servico['nome']] ?>" alt="<?= $servico['nome'] ?>">
+                                           <div class="card-body">
+                                               <h5 class="card-title"><?= $servico['nome'] ?></h5>
+                                               <p class="card-text">R$ <?= number_format($servico['valor'], 2, ',', '.') ?></p>
+                                               <div class="form-check">
+                                                   <input class="form-check-input" type="radio" name="cod_servico" value="<?= $servico['cod'] ?>" required>
+                                                   <label class="form-check-label" for="servico_<?= $servico['cod'] ?>">
+                                                       Selecionar
+                                                   </label>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               <?php endforeach; ?>
                            </div>
                        </div>
 
-                       <!-- Seção de Serviços -->
-                       <div class="col-md-4">
-                           <div class="card mb-4">
+                       <!-- Coluna dos Campos de Data, Horário e Cliente -->
+                       <div class="col-md-5">
+                           <div class="card h-100" style="border: none;">
                                <div class="card-body">
-                                   <h5 class="card-title">Serviço</h5>
-                                   <select name="cod_servico" class="form-control mb-3" required>
-                                       <option value="">Selecione um serviço</option>
-                                       <?php foreach($servicos as $servico): ?>
-                                           <option value="<?= $servico['cod'] ?>"><?= $servico['nome'] ?></option>
-                                       <?php endforeach; ?>
-                                   </select>
-                               </div>
-                           </div>
-                       </div>
-
-                       <!-- Seção de Funcionários -->
-                       <div class="col-md-4">
-                           <div class="card mb-4">
-                               <div class="card-body">
-                                   <h5 class="card-title">Funcionário</h5>
-                                   <select name="cod_funcionario" class="form-control mb-3" required>
-                                       <option value="">Selecione um funcionário</option>
-                                       <?php foreach($funcionarios as $funcionario): ?>
-                                           <option value="<?= $funcionario['cod'] ?>"><?= $funcionario['nome'] ?></option>
-                                       <?php endforeach; ?>
-                                   </select>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-
-                   <div class="row">
-                       <!-- Data do Serviço -->
-                       <div class="col-md-6">
-                           <div class="card mb-4">
-                               <div class="card-body">
-                                   <h5 class="card-title">Data do Serviço</h5>
+                                   <h5 class="card-title" style="color: #426B1F;">Data do Serviço</h5>
                                    <input type="date" name="data_servico" class="form-control mb-3" required>
-                               </div>
-                           </div>
-                       </div>
-
-                       <!-- Horário -->
-                       <div class="col-md-6">
-                           <div class="card mb-4">
-                               <div class="card-body">
-                                   <h5 class="card-title">Horários</h5>
+                                   
+                                   <h5 class="card-title" style="color: #426B1F;">Horários</h5>
                                    <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
-                                        <label class="btn btn-outline-secondary">
+                                       <!-- Adicione os horários aqui -->
+                                       <label class="btn btn-outline-secondary">
                                            <input type="radio" name="horario" value="08:00" autocomplete="off" required> 08:00
                                         </label>
                                         <label class="btn btn-outline-secondary">
@@ -126,7 +106,7 @@ $funcionarios = listaFuncionarios(); // Função que retorna a lista de funcion�
                                            <input type="radio" name="horario" value="11:00" autocomplete="off"> 11:00
                                        </label>
                                        <label class="btn btn-outline-secondary">
-                                           <input type="radio" name="horario" value="12:00" autocomplete="off"> 11:00
+                                           <input type="radio" name="horario" value="12:00" autocomplete="off"> 12:00
                                        </label>
                                     </div>
                                     <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
@@ -147,19 +127,33 @@ $funcionarios = listaFuncionarios(); // Função que retorna a lista de funcion�
                                        </label>
                                        <!-- Adicione mais horários conforme necessário -->
                                    </div>
+                                   
+                                   <h5 class="card-title" style="color: #426B1F;">Cliente</h5>
+                                   <select name="cod_cliente" class="form-control mb-3" required>
+                                       <option value="">Selecione um cliente</option>
+                                       <?php foreach($clientes as $cliente): ?>
+                                           <option value="<?= $cliente['cod'] ?>"><?= $cliente['nome'] ?></option>
+                                       <?php endforeach; ?>
+                                   </select>
+
+                                   <h5 class="card-title" style="color: #426B1F;">Funcionário</h5>
+                                   <select name="cod_funcionario" class="form-control mb-3" required>
+                                       <option value="">Selecione um funcionário</option>
+                                       <?php foreach($funcionarios as $funcionario): ?>
+                                           <option value="<?= $funcionario['cod'] ?>"><?= $funcionario['nome'] ?></option>
+                                       <?php endforeach; ?>
+                                   </select>
+                                   
+                                   <button type="submit" class="btn btn-success btn-block" style="background-color: #426B1F; border-color: #426B1F;">Adicionar</button>
                                </div>
                            </div>
                        </div>
                    </div>
-
-                   <button type="submit" class="btn btn-success btn-block">Adicionar</button>
                </form>
            </div>
        </div>
    </div>
    <!-- /.container-fluid -->
-
+<?php require_once('footer.php'); ?>
 </div>
 <!-- End of Main Content -->
-
-<?php require_once('footer.php'); ?>

@@ -1,12 +1,10 @@
 <?php
 require_once('valida_session.php');
 require_once('header.php'); 
-require_once('sidebar.php'); 
-22
 ?>
 
 <!-- Main Content -->
-<div id="content">
+<div id="content" class="container-fluid p-0" style="font-family: 'Newsreader', serif;">
 
     <?php require_once('navbar.php');?>
 
@@ -139,7 +137,9 @@ require_once('sidebar.php');
 
     </div>
     <!-- /.container-fluid -->
-
+    <?php
+require_once('footer.php');
+?>
 </div>
 <!-- End of Main Content -->
 
@@ -175,6 +175,3 @@ require_once('sidebar.php');
     });
 </script>
 
-<?php
-require_once('footer.php');
-?>

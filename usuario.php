@@ -1,7 +1,6 @@
 <?php
 require_once('valida_session.php');
 require_once('header.php'); 
-require_once('sidebar.php'); 
 unset ($_SESSION['nome']);
 unset ($_SESSION['email']);
 unset ($_SESSION['senha']);
@@ -9,7 +8,7 @@ unset ($_SESSION['telefone']);
 ?>
 
 <!-- Main Content -->
-<div id="content">
+<div id="content" class="container-fluid p-0" style="font-family: 'Newsreader', serif;">
 
     <?php require_once('navbar.php');?>
 
@@ -21,11 +20,14 @@ unset ($_SESSION['telefone']);
 
                 <div class="row">
                     <div class="col-md-8">
-                        <h6 class="m-0 font-weight-bold text-primary" id="title">GERENCIAR INFORMAÇÕES DOS USUÁRIOS</h6>
+                        <h6 class="m-0 font-weight-bold" id="title" style="color: #426B1F;">GERENCIAR INFORMAÇÕES DOS USUÁRIOS</h6>
                     </div>
                     <div class="col-md-4 card_button_title">
-                        <a title="Adicionar novo Usuário" href="cad_usuario.php"><button type="button" class="btn btn-primary btn-sm card_button_title" data-toggle="modal" id=" "> <i class="fa fa-handshake">&nbsp;</i> Adicionar Usuário</button></a>
-
+                        <a title="Adicionar novo Usuário" href="cad_usuario.php">
+                            <button type="button" class="btn btn-sm card_button_title" style="background-color: #426B1F; color: white;" data-toggle="modal" id=" ">
+                                <i class="fa fa-handshake">&nbsp;</i> Adicionar Usuário
+                            </button>
+                        </a>
                     </div>
                 </div>
 
@@ -86,10 +88,14 @@ unset ($_SESSION['telefone']);
                                     <td>Usuario</td>
                                     <td class="text-center"><?= ($dados['status'] == 1 ? '<span class="badge badge-info">Ativo</span>' : '<span class="badge badge-warning">Inativo</span>') ?></td>
                                     <td class="text-center"> 
-                                        <a title="Atualizar" href="editar_usuario.php?cod=<?=$dados['cod']; ?>" class="btn btn-sm btn-success"><i class="fas fa-edit">&nbsp;</i>Atualizar</a>
+                                        <a title="Atualizar" href="editar_usuario.php?cod=<?=$dados['cod']; ?>" class="btn btn-sm" style="background-color: #426B1F; color: white;">
+                                            <i class="fas fa-edit">&nbsp;</i>Atualizar
+                                        </a>
                                     </td>
                                     <td class="text-center">
-                                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#excluir-<?=$dados['cod'];?>" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt">&nbsp;</i>Excluir</a>
+                                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#excluir-<?=$dados['cod'];?>" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-trash-alt">&nbsp;</i>Excluir
+                                        </a>
                                     </td> 
                                 </tr>
 
@@ -102,7 +108,7 @@ unset ($_SESSION['telefone']);
                                             </div>
                                             <div class="modal-body">Deseja realmente excluir esta informação?</div>
                                             <div class="modal-footer">
-                                             <a href="remove_usuario.php?cod=<?=$dados['cod'];?>"><button class="btn btn-primary btn-user" type="button">Confirmar</button></a>
+                                             <a href="remove_usuario.php?cod=<?=$dados['cod'];?>"><button class="btn btn-user" type="button" style="background-color: #426B1F; color: white;">Confirmar</button></a>
                                              <a href="usuario.php"><button class="btn btn-danger btn-user" type="button">Cancelar</button></a>
 
                                          </div>
@@ -128,4 +134,3 @@ unset ($_SESSION['telefone']);
     <?php
     require_once('footer.php');
     ?>
-

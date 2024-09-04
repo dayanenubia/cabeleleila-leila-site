@@ -1,12 +1,11 @@
 <?php
 require_once('valida_session.php');
 require_once('header.php'); 
-require_once('sidebar.php'); 
 require_once('cep_envia.php'); 
 ?>
 
 <!-- Main Content -->
-<div id="content">
+<div id="content" class="container-fluid p-0" style="font-family: 'Newsreader', serif;">
 
     <?php require_once('navbar.php');?>
 
@@ -17,7 +16,7 @@ require_once('cep_envia.php');
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-md-8">
-                        <h6 class="m-0 font-weight-bold text-primary" id="title">ADICIONAR USUÁRIO</h6>
+                        <h6 class="m-0 font-weight-bold" style="color: #426B1F;" id="title">ADICIONAR ADMINISTRADOR</h6>
                     </div>
                 </div>
             </div>
@@ -130,7 +129,7 @@ require_once('cep_envia.php');
                     <div class="card-footer text-muted" id="btn-form">
                         <div class=text-right>
                             <a title="Voltar" href="usuario.php"><button type="button" class="btn btn-success"><i class="fas fa-arrow-circle-left"></i>&nbsp;</i>Voltar</button></a>
-                            <a title="Adicionar"><button type="submit" name="updatebtn" class="btn btn-primary uptadebtn"><i class="fa fa-handshake">&nbsp;</i>Adicionar</button> </a>
+                            <a title="Adicionar"><button type="submit" name="updatebtn" class="btn" style="background-color: #426B1F; color: #ffffff;"><i class="fa fa-handshake">&nbsp;</i>Adicionar</button> </a>
                         </div>
                     </div>
                 </form>  
@@ -139,7 +138,9 @@ require_once('cep_envia.php');
 
     </div>
     <!-- /.container-fluid -->
-
+    <?php
+require_once('footer.php');
+?>
 </div>
 <!-- End of Main Content -->
 
@@ -174,7 +175,3 @@ require_once('cep_envia.php');
         }
     });
 </script>
-
-<?php
-require_once('footer.php');
-?>

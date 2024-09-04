@@ -1,7 +1,6 @@
 <?php
 require_once('valida_session.php');
 require_once('header.php'); 
-require_once('sidebar.php'); 
 require_once ("bd/bd_agendamento.php"); // Alterado para bd_agendamento
 require_once ("bd/bd_cliente.php");
 require_once ("bd/bd_funcionario.php");
@@ -22,7 +21,7 @@ $status = $dados[6];
 ?>
 
 <!-- Main Content -->
-<div id="content">
+<div id="content" class="container-fluid p-0" style="font-family: 'Newsreader', serif;">
 
     <?php require_once('navbar.php');?>
 
@@ -33,7 +32,7 @@ $status = $dados[6];
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-md-8">
-                        <h6 class="m-0 font-weight-bold text-primary" id="title">AGENDAMENTO DE SERVIÇO</h6> <!-- Alterado para Agendamento -->
+                        <h6 class="m-0 font-weight-bold" id="title" style="color: #426B1F;">AGENDAMENTO DE SERVIÇO</h6> <!-- Alterado para Agendamento -->
                     </div>
                 </div>
             </div>
@@ -96,10 +95,10 @@ $status = $dados[6];
 
     </div>
     <!-- /.container-fluid -->
-
-</div>
-
-<!-- End of Main Content -->
 <?php
 require_once('footer.php');
 ?>
+</div>
+
+<!-- End of Main Content -->
+
