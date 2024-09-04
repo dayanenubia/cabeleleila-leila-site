@@ -3,8 +3,6 @@
 require_once('valida_session.php'); 
 require_once('header.php'); 
 require_once('bd/bd_usuario.php'); // Inclui o arquivo que contém funções relacionadas ao banco de dados de usuários
-require_once('bd/bd_cliente.php'); // Inclui o arquivo que contém funções relacionadas ao banco de dados de usuários
-require_once('bd/bd_funcionario.php'); // Inclui o arquivo que contém funções relacionadas ao banco de dados de usuários
 ?>
 
 <!-- Conteúdo Principal -->

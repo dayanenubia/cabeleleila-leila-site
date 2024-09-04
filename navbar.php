@@ -50,9 +50,6 @@ if ($_SESSION['perfil'] == 1) {
                     </li>
                 <?php } elseif ($_SESSION['perfil'] == 3) { ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="painel_de_controle.php" style="color: #000000;">Painel de Controle</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="cliente.php" style="color: #000000;">Clientes</a>
                     </li>
                     <li class="nav-item">

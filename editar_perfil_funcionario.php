@@ -1,11 +1,10 @@
 <?php
 require_once('valida_session.php');
 require_once('header.php'); 
-require_once('sidebar.php'); 
-require_once ("bd/bd_terceirizado.php");
-require_once ("cep_envia.php");
+require_once("bd/bd_funcionario.php");
+require_once("cep_envia.php");
 
-$dados = buscaTerceirizadoeditar($_SESSION['cod_usu']);
+$dados = buscaFuncionarioeditar($_SESSION['cod_usu']);
 $nome = $dados["nome"];
 $email = $dados["email"];
 $telefone = $dados["telefone"];
@@ -18,7 +17,7 @@ $estado = $dados["estado"];
 ?>
 
 <!-- Main Content -->
-<div id="content">
+<div id="content" class="container-fluid p-0" style="font-family: 'Newsreader', serif;">
 
     <?php require_once('navbar.php');?>
 
@@ -29,7 +28,7 @@ $estado = $dados["estado"];
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-md-8">
-                        <h6 class="m-0 font-weight-bold text-primary" id="title">ATUALIZAR DADOS DO TERCEIRIZADO</h6>
+                        <h6 class="m-0 font-weight-bold" style="color: #426B1F;" id="title">ATUALIZAR DADOS DO FUNCIONARIO</h6>
                     </div>
                 </div>
             </div>
@@ -62,7 +61,7 @@ $estado = $dados["estado"];
                 endif;
                 ?>
 
-                <form class="user" action="editar_perfil_terceirizado_envia.php" method="post">
+                <form class="user" action="editar_perfil_funcionario_envia.php" method="post">
                     <input type="hidden" name="cod" value="<?=$_SESSION['cod_usu']?>">
 
                         <div class="form-group">
@@ -122,7 +121,9 @@ $estado = $dados["estado"];
 
     </div>
     <!-- /.container-fluid -->
-
+    <?php
+require_once('footer.php');
+?>
 </div>
 <!-- End of Main Content -->
 
@@ -157,7 +158,3 @@ $estado = $dados["estado"];
         }
     });
 </script>
-
-<?php
-require_once('footer.php');
-?>
