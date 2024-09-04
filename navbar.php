@@ -31,25 +31,25 @@ if ($_SESSION['perfil'] == 1) {
             <ul class="navbar-nav ml-auto">
                 <!-- Links -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Painel de Controle</a>
+                    <a class="nav-link" href="painel_de_controle.php">Painel de Controle</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Administradores</a>
+                    <a class="nav-link" href="usuario.php">Administradores</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Clientes</a>
+                    <a class="nav-link" href="cliente.php">Clientes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Funcionários</a>
+                    <a class="nav-link" href="funcionario.php">Funcionários</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Serviços</a>
+                    <a class="nav-link" href="servico.php">Serviços</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Agendamentos</a>
+                    <a class="nav-link" href="agendamento.php">Agendamentos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contato</a>
+                    <a class="nav-link" href="contato.php">Contato</a>
                 </li>
 
                 <!-- Divider -->

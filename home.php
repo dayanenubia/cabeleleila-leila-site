@@ -23,7 +23,7 @@
 
         <!-- Image Section -->
         <div class="row mt-5">
-            <div class="col-md-6">
+            <div class="col-md-6 d-flex flex-column align-items-center">
                 <img src="img/salao1.jpg" class="img-fluid" alt="Imagem do salão" style="border-radius: 8px;">
                 <p class="text-center mt-2">Imagem 1: Ambiente interno do salão</p>
             </div>

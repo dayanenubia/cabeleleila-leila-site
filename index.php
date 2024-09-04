@@ -72,20 +72,20 @@ error_reporting(E_ALL);
                         
                         <form class="user" action="valida_login.php" method="post">
                             <div class="form-group">
-                                <input type="email" class="form-control form-control-user"
+                                <input type="email" class="form-control-user"
                                     id="email" name="email" aria-describedby="emailHelp"
                                     placeholder="Endereço de Email..." required>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control form-control-user"
+                                <input type="password" class="form-control-user"
                                     id="senha" name="senha" placeholder="Senha" required>
                             </div>
                             <div class="form-group">
-                                <select class="form-control form-control-user" id="perfil" name="perfil" required>
-                                    <option value="">Selecione o perfil</option>
-                                    <option value="1" <?= (isset($_SESSION['perfil']) && $_SESSION['perfil'] == '1') ? 'selected' : '' ?>>Administrador</option>
-                                    <option value="2" <?= (isset($_SESSION['perfil']) && $_SESSION['perfil'] == '2') ? 'selected' : '' ?>>Cliente</option>
-                                    <option value="3" <?= (isset($_SESSION['perfil']) && $_SESSION['perfil'] == '3') ? 'selected' : '' ?>>Funcionário</option>
+                                <select class="form-control-user" id="perfil" name="perfil" required>
+                                    <option value=""></option>
+                                    <option value="1" >Administrador</option>
+                                    <option value="2" >Cliente</option>
+                                    <option value="3" >Funcionário</option>
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary" style="display: block; margin: 0 auto; width: auto; background-color: #426B1F; border-color: #426B1F;">
