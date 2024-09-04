@@ -48,9 +48,6 @@ if ($_SESSION['perfil'] == 1) {
                 <li class="nav-item">
                     <a class="nav-link" href="agendamento.php" style="color: #000000;">Agendamentos</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contato.php" style="color: #000000;">Contato</a>
-                </li>
 
                 <!-- Divider -->
                 <div class="topbar-divider d-none d-sm-block"></div>

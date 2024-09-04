@@ -1,7 +1,6 @@
 <?php
 require_once('valida_session.php');
 require_once('header.php'); 
-require_once('sidebar.php'); 
 require_once ("bd/bd_usuario.php");
 require_once ("cep_envia.php");
 
@@ -18,7 +17,7 @@ $estado = $dados["estado"];
 ?>
 
 <!-- Main Content -->
-<div id="content">
+<div id="content" class="container-fluid p-0" style="font-family: 'Newsreader', serif;">
 
     <?php require_once('navbar.php');?>
 
@@ -29,7 +28,7 @@ $estado = $dados["estado"];
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-md-8">
-                        <h6 class="m-0 font-weight-bold text-primary" id="title">ATUALIZAR DADOS DO USUÁRIO</h6>
+                        <h6 class="m-0 font-weight-bold" style="color: #426B1F;" id="title">ATUALIZAR DADOS DO USUÁRIO</h6>
                     </div>
                 </div>
             </div>
@@ -113,7 +112,7 @@ $estado = $dados["estado"];
                     <div class="card-footer text-muted" id="btn-form">
                         <div class=text-right>
                             <a title="Voltar" href="home.php"><button type="button" class="btn btn-success"><i class="fas fa-arrow-circle-left"></i>&nbsp;</i>Voltar</button></a>
-                            <a title="Atualizar"><button type="submit" name="updatebtn" class="btn btn-primary uptadebtn"><i class="fas fa-edit">&nbsp;</i>Atualizar</button> </a>
+                            <a title="Atualizar"><button type="submit" name="updatebtn" class="btn" style="background-color: #426B1F; color: white;"><i class="fas fa-edit">&nbsp;</i>Atualizar</button> </a>
                         </div>
                     </div>
                 </form>  
@@ -122,7 +121,9 @@ $estado = $dados["estado"];
 
     </div>
     <!-- /.container-fluid -->
-
+    <?php
+require_once('footer.php');
+?>
 </div>
 <!-- End of Main Content -->
 
@@ -158,6 +159,3 @@ $estado = $dados["estado"];
     });
 </script>
 
-<?php
-require_once('footer.php');
-?>
