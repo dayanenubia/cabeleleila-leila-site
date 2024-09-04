@@ -15,7 +15,7 @@ require_once('header.php');
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-md-8">
-                        <h6 class="m-0 font-weight-bold text-primary" id="title">ADICIONAR CLIENTE</h6>
+                        <h6 class="m-0 font-weight-bold" style="color: #426B1F;" id="title">ADICIONAR CLIENTE</h6>
                     </div>
                 </div>
             </div>
@@ -126,9 +126,9 @@ require_once('header.php');
                     </div>                    
 
                     <div class="card-footer text-muted" id="btn-form">
-                        <div class=text-right>
-                            <a title="Voltar" href="cliente.php"><button type="button" class="btn btn-success"><i class="fas fa-arrow-circle-left"></i>&nbsp;</i>Voltar</button></a>
-                            <a title="Adicionar"><button type="submit" name="updatebtn" class="btn btn-primary uptadebtn"><i class="fa fa-handshake">&nbsp;</i>Adicionar</button> </a>
+                        <div class="text-right">
+                            <a title="Voltar" href="cliente.php"><button type="button" class="btn btn-success" style="background-color: #426B1F; border-color: #426B1F;"><i class="fas fa-arrow-circle-left"></i>&nbsp;</i>Voltar</button></a>
+                            <a title="Adicionar"><button type="submit" name="updatebtn" class="btn btn-primary uptadebtn" style="background-color: #426B1F; border-color: #426B1F;"><i class="fa fa-handshake">&nbsp;</i>Adicionar</button> </a>
                         </div>
                     </div>
                 </form>  
@@ -174,4 +174,3 @@ require_once('footer.php');
         }
     });
 </script>
-
