@@ -19,7 +19,7 @@ require_once('bd/bd_usuario.php'); // Inclui o arquivo que contém funções rel
                 <div class="row">
                     <div class="col-md-8">
                         <!-- Título da Página -->
-                        <h6 class="m-0 font-weight-bold" id="title" style="color: #426B1F; font-family: 'Newreader serif';">AGENDAMENTO DE SERVIÇO ABERTAS</h6>
+                        <h6 class="m-0 font-weight-bold" id="title" style="color: #426B1F; font-family: 'Newreader serif';">AGENDAMENTO MARCADOS</h6>
                     </div>
                     <?php 
                     // Verifica se o usuário tem o perfil de administrador (perfil 1)
@@ -81,6 +81,7 @@ require_once('bd/bd_usuario.php'); // Inclui o arquivo que contém funções rel
                                 <th>Funcionário</th>
                                 <th>Serviço</th>
                                 <th class="text-center">Data do Serviço</th>
+                                <th class="text-center">Horário</th>
                                 <?php 
                                 // Exibe colunas de "Atualizar" e "Excluir" apenas para administradores (perfil 1) ou funcionários com perfil específico (perfil 3)
                                 if ($_SESSION['perfil'] == 1) {
@@ -104,7 +105,7 @@ require_once('bd/bd_usuario.php'); // Inclui o arquivo que contém funções rel
                         if ($_SESSION['perfil'] == 1) {
                             $agendamento = listaAgendamento();
                             foreach($agendamento as $dados): 
-                                if($dados[5] == 1): ?> <!-- Verifica se a ordem está ativa -->
+                                if($dados[6] == 1): ?> <!-- Verifica se a ordem está ativa -->
                                     <tr>
                                         <!-- Exibe as informações das ordens de serviço -->
                                         <td style="display:none"><?= $dados[0] ?></td>
@@ -112,15 +113,16 @@ require_once('bd/bd_usuario.php'); // Inclui o arquivo que contém funções rel
                                         <td><?= $dados[2] ?></td>
                                         <td><?= $dados[3] ?></td>
                                         <td class="text-center"><?= date('d/m/Y', strtotime($dados[4])) ?></td>
+                                        <td><?= $dados[5] ?></td>
                                         <td class="text-center">
                                             <!-- Botão para atualizar a ordem de serviço -->
-                                            <?php if($dados[5] == 1): ?>
+                                            <?php if($dados[6] == 1): ?>
                                                 <a title="Atualizar" href="editar_agendamento.php?cod=<?= $dados[0]; ?>" class="btn btn-sm btn-success" style="font-family: 'Newreader serif';"><i class="fas fa-edit">&nbsp;</i>Atualizar</a>
                                             <?php endif ?>
                                         </td>
                                         <td class="text-center">
                                             <!-- Botão para excluir a ordem de serviço -->
-                                            <?php if (($dados[5] == 1) || ($dados[5] == 3)): ?> 
+                                            <?php if (($dados[6] == 1) || ($dados[6] == 3)): ?> 
                                                 <a title="Excluir" href="javascript:void(0)" data-toggle="modal" data-target="#excluir-<?= $dados[0]; ?>" class="btn btn-sm btn-danger" style="font-family: 'Newreader serif';"><i class="fas fa-trash-alt">&nbsp;</i>Excluir</a>
                                             <?php endif ?>
                                         </td> 
@@ -148,7 +150,7 @@ require_once('bd/bd_usuario.php'); // Inclui o arquivo que contém funções rel
                         if ($_SESSION['perfil'] == 2) {
                             $agendamento = listaAgendamentoCliente();
                             foreach($agendamento as $dados): 
-                                if($dados[5] == 1): ?>
+                                if($dados[6] == 1): ?>
                                     <tr>
                                         <!-- Exibe as informações das ordens de serviço -->
                                         <td style="display:none"><?= $dados[0] ?></td>
@@ -156,6 +158,7 @@ require_once('bd/bd_usuario.php'); // Inclui o arquivo que contém funções rel
                                         <td><?= $dados[2] ?></td>
                                         <td><?= $dados[3] ?></td>
                                         <td class="text-center"><?= date('d/m/Y', strtotime($dados[4])) ?></td>
+                                        <td><?= $dados[5] ?></td>
                                     </tr>
                                 <?php endif; endforeach; 
                             } 
@@ -164,7 +167,7 @@ require_once('bd/bd_usuario.php'); // Inclui o arquivo que contém funções rel
                         if ($_SESSION['perfil'] == 3) {
                             $agendamento = listaAgendamentoFuncionario();
                             foreach($agendamento as $dados): 
-                                if($dados[5] == 1): ?>
+                                if($dados[6] == 1): ?>
                                     <tr>
                                         <!-- Exibe as informações das ordens de serviço -->
                                         <td style="display:none"><?= $dados[0] ?></td>
@@ -172,9 +175,10 @@ require_once('bd/bd_usuario.php'); // Inclui o arquivo que contém funções rel
                                         <td><?= $dados[2] ?></td>
                                         <td><?= $dados[3] ?></td>
                                         <td class="text-center"><?= date('d/m/Y', strtotime($dados[4])) ?></td>
+                                        <td><?= $dados[5] ?></td>
                                         <td class="text-center">
                                             <!-- Botão para atualizar a ordem de serviço -->
-                                            <?php if($dados[5] == 1): ?>
+                                            <?php if($dados[6] == 1): ?>
                                                 <a title="Atualizar" href="editar_agendamento.php?cod=<?= $dados[0]; ?>" class="btn btn-sm btn-success" style="font-family: 'Newreader serif';"><i class="fas fa-edit">&nbsp;</i>Atualizar</a>
                                             <?php endif ?>
                                         </td>
@@ -191,13 +195,10 @@ require_once('bd/bd_usuario.php'); // Inclui o arquivo que contém funções rel
 
     </div>
     <!-- Fim do Conteúdo da Página -->
-
+<?php require_once('footer.php'); ?> <!-- Inclui o rodapé -->
 </div>
 <!-- Fim do Conteúdo Principal -->
 
-<?php require_once('footer.php'); ?> <!-- Inclui o rodapé -->
-
-</div>
 
 <!-- Script para remover a mensagem de erro ou sucesso após um curto período -->
 <script>

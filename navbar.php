@@ -31,25 +31,25 @@ if ($_SESSION['perfil'] == 1) {
             <ul class="navbar-nav ml-auto">
                 <!-- Links -->
                 <li class="nav-item">
-                    <a class="nav-link" href="painel_de_controle.php">Painel de Controle</a>
+                    <a class="nav-link" href="painel_de_controle.php" style="color: #000000;">Painel de Controle</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="usuario.php">Administradores</a>
+                    <a class="nav-link" href="usuario.php" style="color: #000000;">Administradores</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cliente.php">Clientes</a>
+                    <a class="nav-link" href="cliente.php" style="color: #000000;">Clientes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="funcionario.php">Funcionários</a>
+                    <a class="nav-link" href="funcionario.php" style="color: #000000;">Funcionários</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="servico.php">Serviços</a>
+                    <a class="nav-link" href="servico.php" style="color: #000000;">Serviços</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="agendamento.php">Agendamentos</a>
+                    <a class="nav-link" href="agendamento.php" style="color: #000000;">Agendamentos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="contato.php">Contato</a>
+                    <a class="nav-link" href="contato.php" style="color: #000000;">Contato</a>
                 </li>
 
                 <!-- Divider -->
