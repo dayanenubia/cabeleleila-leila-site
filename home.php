@@ -16,7 +16,7 @@
                 "Cabeleleila Leila. Cabelos, unhas, hidratação e unhas. Cabeleleila Leila. Venha fazer suas unhas e seus cabelos."
             </h1>
             <br><br>
-            <a href="servico.php" class="btn btn-success mt-4" style="background-color: #426B1F;">Conheça nossos serviços</a>
+            <a href="nossos_servicos.php" class="btn btn-success mt-4" style="background-color: #426B1F;">Conheça nossos serviços</a>
         </div>
 
         <br><br><br>

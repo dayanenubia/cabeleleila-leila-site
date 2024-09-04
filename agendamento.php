@@ -19,7 +19,7 @@ require_once('header.php');
                         <h6 class="m-0 font-weight-bold" style="color: #426B1F;" id="title">GERENCIAR AGENDAMENTOS</h6>
                     </div>
                     <div class="col-md-4 card_button_title">
-                        <a title="Adicionar novo agendamento" href="cad_agendamento.php"><button type="button" class="btn btn-success btn-sm card_button_title" data-toggle="modal" id=" "> <i class="fas fa-fw fa-calendar-plus">&nbsp;</i> Adicionar Agendamento</button></a>
+                        <a title="Adicionar novo agendamento" href="cad_agendamento.php"><button type="button" class="btn btn-sm card_button_title" data-toggle="modal" id=" " style="color: #426B1F;"> <i class="fas fa-fw fa-calendar-plus">&nbsp;</i> Adicionar Agendamento</button></a>
                     </div>
                 </div>
 
@@ -84,7 +84,7 @@ require_once('header.php');
                                 <td class="text-center"><?= ($dados[6] == 1) ? '<span class="badge badge-danger">Aberto</span>' : (($dados[6] == 2) ? '<span class="badge badge-warning">Em Andamento</span>' : '<span class="badge badge-info">Concluído</span>') ?></td>
                                 <td class="text-center">
                                     <?php if($dados[6] == 1 || ($dados[6] == 2)): ?>
-                                        <a title="Atualizar" href="editar_agendamento.php?cod=<?=$dados[0]; ?>" class="btn btn-sm btn-success"><i class="fas fa-edit">&nbsp;</i>Atualizar</a>
+                                        <a title="Atualizar" href="editar_agendamento.php?cod=<?=$dados[0]; ?>" class="btn btn-sm"><i class="fas fa-edit" style="color: #426B1F;">&nbsp;</i>Atualizar</a>
                                     <?php endif ?>
                                 </td>
                                 <td class="text-center">

@@ -1,14 +1,13 @@
 <?php
-
 if ($_SESSION['perfil'] == 1) {
     $texto = "PAINEL ADMINISTRATIVO DO USUÁRIO";
-} elseif ($_SESSION['perfil'] == 2) {
+} elseif ($_SESSION['perfil'] == 3) {
     $texto = "PAINEL ADMINISTRATIVO DO CLIENTE";
 } else {
     $texto = "PAINEL ADMINISTRATIVO DO FUNCIONÁRIO";
 }
-
 ?>
+
 <!-- Incluir o link do Google Fonts para a fonte Newsreader -->
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
@@ -30,24 +29,43 @@ if ($_SESSION['perfil'] == 1) {
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <!-- Links -->
-                <li class="nav-item">
-                    <a class="nav-link" href="painel_de_controle.php" style="color: #000000;">Painel de Controle</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="usuario.php" style="color: #000000;">Administradores</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cliente.php" style="color: #000000;">Clientes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="funcionario.php" style="color: #000000;">Funcionários</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="servico.php" style="color: #000000;">Serviços</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="agendamento.php" style="color: #000000;">Agendamentos</a>
-                </li>
+                <?php if ($_SESSION['perfil'] == 1) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="painel_de_controle.php" style="color: #000000;">Painel de Controle</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="usuario.php" style="color: #000000;">Administradores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cliente.php" style="color: #000000;">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="funcionario.php" style="color: #000000;">Funcionários</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="servico.php" style="color: #000000;">Serviços</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="agendamento.php" style="color: #000000;">Agendamentos</a>
+                    </li>
+                <?php } elseif ($_SESSION['perfil'] == 3) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="painel_de_controle.php" style="color: #000000;">Painel de Controle</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cliente.php" style="color: #000000;">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="servico.php" style="color: #000000;">Serviços</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="agendamento.php" style="color: #000000;">Agendamentos</a>
+                    </li>
+                <?php } elseif ($_SESSION['perfil'] == 2) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="agendamento.php" style="color: #000000;">Agendamentos</a>
+                    </li>
+                <?php } ?>
 
                 <!-- Divider -->
                 <div class="topbar-divider d-none d-sm-block"></div>

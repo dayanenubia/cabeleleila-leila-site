@@ -12,7 +12,7 @@ $bairro = $_POST["bairro"];
 $cidade = $_POST["cidade"];
 $estado = $_POST["estado"];
 $status = $_POST["status"];
-$perfil = 2; // Se o perfil para funcionários for diferente, ajuste aqui
+$perfil = 3; // Se o perfil para funcionários for diferente, ajuste aqui
 $data = date("y/m/d");
 
 require_once("bd/bd_funcionario.php");
