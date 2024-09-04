@@ -63,7 +63,7 @@ if ($_SESSION['perfil'] == 1) {
                     </li>
                 <?php } elseif ($_SESSION['perfil'] == 2) { ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="agendamento.php" style="color: #000000;">Agendamentos</a>
+                        <a class="nav-link" href="agenda_cliente.php" style="color: #000000;">Agendamentos</a>
                     </li>
                 <?php } ?>
 
